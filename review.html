@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รีวิวเรือนชายน้ำ · Ruean Chainam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --gold: #C8860A;
+      --gold-light: #E8A82A;
+      --dark: #120C05;
+      --warm: #2A1F0E;
+      --cream: #F5ECD7;
+      --text: #3D2B0F;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      background-color: var(--dark);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    .font-display {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Star Rating */
+    .star-rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+    .star-rating input {
+      display: none;
+    }
+    .star-rating label {
+      font-size: 2.2rem;
+      cursor: pointer;
+      color: #4a3520;
+      transition: color 0.15s, transform 0.1s;
+      line-height: 1;
+    }
+    .star-rating label:hover,
+    .star-rating label:hover ~ label,
+    .star-rating input:checked ~ label {
+      color: var(--gold-light);
+    }
+    .star-rating label:active {
+      transform: scale(1.2);
+    }
+
+    /* Input styles */
+    .form-input {
+      background: rgba(42, 31, 14, 0.6);
+      border: 1px solid rgba(200, 134, 10, 0.3);
+      color: var(--cream);
+      border-radius: 8px;
+      padding: 10px 14px;
+      width: 100%;
+      transition: border-color 0.2s;
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .form-input::placeholder {
+      color: rgba(245, 236, 215, 0.35);
+    }
+
+    select.form-input option {
+      background: #1a1208;
+      color: var(--cream);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Submit button */
+    .btn-submit {
+      background: linear-gradient(135deg, var(--gold), #a06a06);
+      color: #fff;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 14px 40px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+    }
+    .btn-submit:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Card */
+    .rating-card {
+      background: rgba(42, 31, 14, 0.5);
+      border: 1px solid rgba(200, 134, 10, 0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(200, 134, 10, 0.2);
+      margin: 24px 0;
+    }
+
+    /* Success overlay */
+    #success-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 12, 5, 0.95);
+      z-index: 50;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px;
+    }
+    #success-overlay.show {
+      display: flex;
+    }
+
+    /* QR section */
+    .qr-section {
+      background: rgba(42, 31, 14, 0.4);
+      border: 1px solid rgba(200, 134, 10, 0.15);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Animate in */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.5s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .delay-3 { animation-delay: 0.3s; opacity: 0; }
+
+    /* Watermark pattern */
+    .bg-pattern {
+      background-image: radial-gradient(circle at 20% 50%, rgba(200, 134, 10, 0.04) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 20%, rgba(200, 134, 10, 0.03) 0%, transparent 50%);
+    }
+  </style>
+</head>
+<body class="bg-pattern">
+
+  <!-- Header -->
+  <header class="text-center py-10 px-6">
+    <div class="fade-up">
+      <p class="font-display italic text-[var(--gold)] text-sm tracking-widest uppercase mb-1">Ruean Chainam</p>
+      <h1 class="font-display text-4xl font-semibold text-[var(--cream)] leading-tight">เรือนชายน้ำ</h1>
+      <p class="text-[var(--cream)] opacity-60 text-sm mt-1">คาเฟ่ · ร้านอาหาร · รีสอร์ท · สมุทรสาคร</p>
+    </div>
+    <div class="mt-6 fade-up delay-1">
+      <div class="inline-block border border-[var(--gold)] border-opacity-30 rounded-full px-6 py-2">
+        <p class="text-[var(--gold)] text-sm font-medium">✦ แบบฟอร์มรีวิวประสบการณ์ ✦</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Form -->
+  <main class="max-w-lg mx-auto px-5 pb-16">
+    <form id="review-form" class="space-y-5 fade-up delay-2">
+
+      <!-- ชื่อลูกค้า -->
+      <div>
+        <label class="block text-sm text-[var(--cream)] opacity-70 mb-2">ชื่อของคุณ <span class="opacity-50">(ไม่บังคับ)</span></label>
+        <input type="text" name="customer_name" placeholder="เช่น คุณนิ, K.Nat..." class="form-input">
+      </div>
+
+      <!-- ช่องทาง -->
+      <div>
+        <label class="block text-sm text-[var(--cream)] opacity-70 mb-2">มาร้านโดย</label>
+        <select name="visit_channel" class="form-input">
+          <option value="walk-in">Walk-in · แวะมาเอง</option>
+          <option value="chatbot">ผ่านแชทบอท "น้ำ"</option>
+          <option value="reservation">จองล่วงหน้า</option>
+          <option value="delivery">Delivery / Take Away</option>
+        </select>
+      </div>
+
+      <hr class="divider">
+
+      <p class="text-center text-[var(--cream)] opacity-50 text-xs tracking-widest uppercase">ให้คะแนนประสบการณ์ของคุณ</p>
+
+      <!-- อาหาร -->
+      <div class="rating-card">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="font-medium text-[var(--cream)]">🍽 อาหาร</p>
+            <p class="text-xs opacity-50 mt-0.5">รสชาติ คุณภาพ ความสด</p>
+          </div>
+          <div class="star-rating" id="stars-food">
+            <input type="radio" name="rating_food" id="food5" value="5"><label for="food5" title="ยอดเยี่ยม">★</label>
+            <input type="radio" name="rating_food" id="food4" value="4"><label for="food4" title="ดีมาก">★</label>
+            <input type="radio" name="rating_food" id="food3" value="3"><label for="food3" title="ดี">★</label>
+            <input type="radio" name="rating_food" id="food2" value="2"><label for="food2" title="พอใช้">★</label>
+            <input type="radio" name="rating_food" id="food1" value="1"><label for="food1" title="ต้องปรับปรุง">★</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- บริการ -->
+      <div class="rating-card">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="font-medium text-[var(--cream)]">🤝 บริการ</p>
+            <p class="text-xs opacity-50 mt-0.5">ความเป็นมิตร รวดเร็ว ใส่ใจ</p>
+          </div>
+          <div class="star-rating" id="stars-service">
+            <input type="radio" name="rating_service" id="svc5" value="5"><label for="svc5">★</label>
+            <input type="radio" name="rating_service" id="svc4" value="4"><label for="svc4">★</label>
+            <input type="radio" name="rating_service" id="svc3" value="3"><label for="svc3">★</label>
+            <input type="radio" name="rating_service" id="svc2" value="2"><label for="svc2">★</label>
+            <input type="radio" name="rating_service" id="svc1" value="1"><label for="svc1">★</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- บรรยากาศ -->
+      <div class="rating-card">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="font-medium text-[var(--cream)]">🌿 บรรยากาศ</p>
+            <p class="text-xs opacity-50 mt-0.5">วิวริมน้ำ ความสวยงาม ความสงบ</p>
+          </div>
+          <div class="star-rating" id="stars-atmo">
+            <input type="radio" name="rating_atmosphere" id="atm5" value="5"><label for="atm5">★</label>
+            <input type="radio" name="rating_atmosphere" id="atm4" value="4"><label for="atm4">★</label>
+            <input type="radio" name="rating_atmosphere" id="atm3" value="3"><label for="atm3">★</label>
+            <input type="radio" name="rating_atmosphere" id="atm2" value="2"><label for="atm2">★</label>
+            <input type="radio" name="rating_atmosphere" id="atm1" value="1"><label for="atm1">★</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- แชทบอท -->
+      <div class="rating-card">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="font-medium text-[var(--cream)]">🤖 แชทบอท "น้ำ"</p>
+            <p class="text-xs opacity-50 mt-0.5">เคยใช้งาน? ประทับใจไหม?</p>
+          </div>
+          <div class="star-rating" id="stars-bot">
+            <input type="radio" name="rating_chatbot" id="bot5" value="5"><label for="bot5">★</label>
+            <input type="radio" name="rating_chatbot" id="bot4" value="4"><label for="bot4">★</label>
+            <input type="radio" name="rating_chatbot" id="bot3" value="3"><label for="bot3">★</label>
+            <input type="radio" name="rating_chatbot" id="bot2" value="2"><label for="bot2">★</label>
+            <input type="radio" name="rating_chatbot" id="bot1" value="1"><label for="bot1">★</label>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- ข้อความรีวิว -->
+      <div>
+        <label class="block text-sm text-[var(--cream)] opacity-70 mb-2">บอกเล่าประสบการณ์ของคุณ <span class="opacity-50">(ไม่บังคับ)</span></label>
+        <textarea name="review_text" placeholder="อาหารอร่อย บรรยากาศดี มีอะไรที่ประทับใจเป็นพิเศษไหม? 🌿" class="form-input"></textarea>
+      </div>
+
+      <!-- Error msg -->
+      <p id="error-msg" class="text-red-400 text-sm text-center hidden">กรุณาให้คะแนนอย่างน้อย 1 หัวข้อก่อนส่งรีวิวนะคะ</p>
+
+      <!-- Submit -->
+      <div class="text-center pt-2">
+        <button type="submit" class="btn-submit" id="submit-btn">
+          ส่งรีวิว ✦
+        </button>
+        <p class="text-[var(--cream)] opacity-30 text-xs mt-3">รีวิวของคุณช่วยพัฒนาเรือนชายน้ำให้ดีขึ้น</p>
+      </div>
+    </form>
+
+    <!-- QR Code Section (สำหรับพิมพ์) -->
+    <div class="qr-section mt-12 fade-up delay-3">
+      <p class="text-[var(--cream)] opacity-40 text-xs uppercase tracking-widest mb-3">แชร์ลิงก์รีวิว</p>
+      <img id="qr-img" src="" alt="QR Code" class="mx-auto rounded-lg w-36 h-36 bg-white p-2">
+      <p class="text-[var(--cream)] opacity-30 text-xs mt-3 break-all" id="review-url"></p>
+    </div>
+  </main>
+
+  <!-- Success Overlay -->
+  <div id="success-overlay">
+    <div class="text-6xl mb-6 animate-bounce">🌿</div>
+    <h2 class="font-display text-3xl text-[var(--cream)] mb-2">ขอบคุณมากค่ะ!</h2>
+    <p class="font-display italic text-[var(--gold)] text-lg mb-4">Thank you for your review</p>
+    <p class="text-[var(--cream)] opacity-60 max-w-xs mx-auto text-sm leading-relaxed">
+      รีวิวของคุณมีค่ามากสำหรับเรือนชายน้ำ<br>เราจะนำไปพัฒนาบริการให้ดียิ่งขึ้นค่ะ ✦
+    </p>
+    <div class="mt-8 border border-[var(--gold)] border-opacity-30 rounded-full px-6 py-2">
+      <p class="text-[var(--gold)] text-sm">เรือนชายน้ำ · สมุทรสาคร</p>
+    </div>
+  </div>
+
+  <script>
+    const WEBHOOK_URL = 'https://mathavee251244.app.n8n.cloud/webhook/review-submit';
+
+    // QR Code
+    const reviewUrl = window.location.href.split('?')[0];
+    document.getElementById('review-url').textContent = reviewUrl;
+    document.getElementById('qr-img').src =
+      'https://api.qrserver.com/v1/create-qr-code/?size=150x150&bgcolor=ffffff&color=2A1F0E&data=' + encodeURIComponent(reviewUrl);
+
+    // Form submit
+    document.getElementById('review-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const fd = new FormData(this);
+      const data = Object.fromEntries(fd.entries());
+
+      // Validate: at least one rating
+      const hasRating = data.rating_food || data.rating_service || data.rating_atmosphere || data.rating_chatbot;
+      if (!hasRating) {
+        document.getElementById('error-msg').classList.remove('hidden');
+        return;
+      }
+      document.getElementById('error-msg').classList.add('hidden');
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'กำลังส่ง...';
+
+      try {
+        const resp = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (resp.ok) {
+          document.getElementById('success-overlay').classList.add('show');
+        } else {
+          throw new Error('server error');
+        }
+      } catch (err) {
+        // Show success anyway (offline fallback)
+        document.getElementById('success-overlay').classList.add('show');
+      }
+    });
+  </script>
+</body>
+</html>

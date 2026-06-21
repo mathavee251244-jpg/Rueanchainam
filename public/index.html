@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เรือนชายน้ำ | Ruan Chai Nam Cafe & Restaurant | สมุทรสาคร</title>
+  <meta name="description" content="เรือนชายน้ำ คาเฟ่ & ร้านอาหารริมคลองสุนัขหอน บ้านบ่อ สมุทรสาคร อาหารทะเลสด คาเฟ่สไตล์ Rustic Loft และที่พักริมน้ำ">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            amber:   '#C8860A',
+            'amber-lt': '#E09B1A',
+            bamboo:  '#C4924A',
+            bark:    '#2A1F0E',
+            deep:    '#120C05',
+            straw:   '#D4B483',
+            river:   '#7BAEC8',
+            'river-dk': '#3A6E8A',
+            green:   '#2D5A27',
+            'green-lt': '#4A8040',
+            cream:   '#FBF5ED',
+            'cream-dk': '#F0E8D8',
+          },
+          fontFamily: {
+            display:  ['Cormorant Garamond', 'Playfair Display', 'serif'],
+            thai:     ['IBM Plex Sans Thai', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      background: #FBF5ED;
+      color: #120C05;
+      overflow-x: hidden;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    body.loaded { opacity: 1; }
+    ::selection { background: rgba(200,134,10,0.25); }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #FBF5ED; }
+    ::-webkit-scrollbar-thumb { background: #C8860A; border-radius: 3px; }
+
+    /* ── Navbar ───────────────────────────────────── */
+    #navbar { transition: all 0.5s cubic-bezier(0.25,1,0.5,1); }
+    #navbar.scrolled {
+      background: rgba(18,12,5,0.95) !important;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.4);
+      padding-top: 0.7rem; padding-bottom: 0.7rem;
+    }
+    .nav-link { position: relative; transition: color 0.3s ease; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:-2px; left:0;
+      width:0; height:2px; background:#C8860A;
+      transition: width 0.4s cubic-bezier(0.25,1,0.5,1);
+    }
+    .nav-link:hover::after { width:100%; }
+
+    /* ── Hero ─────────────────────────────────────── */
+    .hero-img {
+      position: absolute; inset: 0;
+      background-image: url('images/5acf6e3436124dfab27b95113e0e2d97.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      animation: heroZoom 20s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom {
+      0%   { transform: scale(1); }
+      100% { transform: scale(1.04); }
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        175deg,
+        rgba(18,12,5,0.72) 0%,
+        rgba(18,12,5,0.45) 35%,
+        rgba(18,12,5,0.5)  65%,
+        rgba(18,12,5,0.82) 100%
+      );
+    }
+    /* Warm amber glow — mirrors the rattan lights in photo */
+    .hero-glow {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: linear-gradient(to top, rgba(200,134,10,0.18), transparent);
+      pointer-events: none;
+    }
+
+    /* ── Liquid Wave Button ───────────────────────── */
+    .btn-wave {
+      position: relative; isolation: isolate; overflow: hidden;
+      transition: color 0.4s cubic-bezier(0.25,1,0.5,1),
+                  transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.4s cubic-bezier(0.25,1,0.5,1);
+    }
+    .btn-wave::before {
+      content:''; position:absolute; z-index:-1;
+      bottom:-70%; left:50%; transform:translateX(-50%);
+      width:160%; height:220%;
+      background: #C8860A;
+      border-radius: 50% 50% 0 0 / 35% 35% 0 0;
+      transition: bottom 0.65s cubic-bezier(0.34,1.56,0.64,1),
+                  border-radius 0.5s cubic-bezier(0.25,1,0.5,1);
+    }
+    .btn-wave:hover::before { bottom: -5%; border-radius: 0; }
+    .btn-wave:hover { color:#120C05; transform:translateY(-3px); box-shadow:0 14px 40px rgba(200,134,10,0.5); }
+    .btn-wave:active { transform:translateY(-1px); }
+
+    .btn-wave-light::before { background: rgba(251,245,237,0.95); }
+    .btn-wave-light:hover { color: #120C05 !important; }
+
+    /* ── Wave Divider ─────────────────────────────── */
+    .wdiv-wrap { overflow:hidden; line-height:0; }
+    .wdiv-svg { display:block; width:200%; height:70px; }
+    .wl1 { animation: wScroll 8s linear infinite; }
+    .wl2 { animation: wScroll 12s linear infinite reverse; margin-top:-68px; }
+    .wl3 { animation: wScroll 6s linear infinite; margin-top:-68px; }
+    @keyframes wScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* ── Photo Cards ──────────────────────────────── */
+    .photo-card { overflow: hidden; }
+    .photo-card .pc-img {
+      transition: transform 0.7s cubic-bezier(0.25,1,0.5,1),
+                  filter 0.7s ease;
+    }
+    .photo-card:hover .pc-img {
+      transform: scale(1.06);
+      filter: brightness(1.08);
+    }
+    .photo-card { transition: box-shadow 0.5s cubic-bezier(0.25,1,0.5,1),
+                               transform 0.5s cubic-bezier(0.25,1,0.5,1); }
+    .photo-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.25); }
+
+    /* ── Exp Card Lift ────────────────────────────── */
+    .exp-card {
+      transition: transform 0.5s cubic-bezier(0.25,1,0.5,1),
+                  box-shadow 0.5s cubic-bezier(0.25,1,0.5,1);
+    }
+    .exp-card:hover { transform: translateY(-8px); box-shadow: 0 28px 64px rgba(18,12,5,0.2); }
+    .exp-card .ec-body { transition: transform 0.5s cubic-bezier(0.25,1,0.5,1); }
+    .exp-card:hover .ec-body { transform: translateY(-4px); }
+
+    /* ── Menu grid image zoom ─────────────────────── */
+    .menu-cell { overflow: hidden; }
+    .menu-cell .mc-img { transition: transform 0.5s cubic-bezier(0.25,1,0.5,1); }
+    .menu-cell:hover .mc-img { transform: scale(1.05); }
+
+    /* ── Glassmorphism ────────────────────────────── */
+    .glass {
+      background: rgba(251,245,237,0.18);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(251,245,237,0.35);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .glass-dark {
+      background: rgba(18,12,5,0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(200,134,10,0.25);
+    }
+
+    /* ── Coffee Steam ─────────────────────────────── */
+    .steam { display:block; width:3px; background:linear-gradient(to top,rgba(200,134,10,0.6),transparent); border-radius:2px; transform-origin:bottom; }
+    .s1 { height:22px; animation: steamRise 2.6s ease-in-out infinite; }
+    .s2 { height:16px; animation: steamRise 2.6s ease-in-out infinite 0.7s; }
+    .s3 { height:20px; animation: steamRise 2.6s ease-in-out infinite 1.3s; }
+    @keyframes steamRise {
+      0%   { opacity:0; transform:translateY(0) scaleX(1); }
+      20%  { opacity:0.8; }
+      55%  { opacity:0.4; transform:translateY(-14px) scaleX(1.5) rotate(7deg); }
+      100% { opacity:0; transform:translateY(-28px) scaleX(0.6) rotate(-6deg); }
+    }
+
+    /* ── Stars ────────────────────────────────────── */
+    @keyframes starGlow {
+      0%,100%{filter:brightness(1);}
+      50%{filter:brightness(1.4) drop-shadow(0 0 5px #C8860A);}
+    }
+    .star { animation: starGlow 2s ease-in-out infinite; }
+
+    /* ── Scroll Reveal ────────────────────────────── */
+    .reveal { opacity:0; transform:translateY(26px);
+      transition: opacity 0.75s cubic-bezier(0.25,1,0.5,1), transform 0.75s cubic-bezier(0.25,1,0.5,1); }
+    .reveal.in { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
+
+    /* ── Misc helpers ─────────────────────────────── */
+    .gold-line { width:52px; height:3px; background:linear-gradient(90deg,#C8860A,#E09B1A); border-radius:2px; }
+    .grad-text {
+      background: linear-gradient(130deg,#C8860A 0%,#E8B84B 50%,#C8860A 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .pill { display:inline-flex; align-items:center; gap:6px; padding:5px 14px; border-radius:100px;
+            font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+    .bounce { animation:bounce 2.2s ease-in-out infinite; }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    .float { animation:floatY 3.2s ease-in-out infinite; }
+
+    /* Testimonial */
+    #tTrack { display:flex; transition:transform 0.6s cubic-bezier(0.25,1,0.5,1); }
+    .tSlide { min-width:100%; }
+    .tdot { height:10px; border-radius:5px; background:rgba(18,12,5,0.15);
+            transition:width .4s cubic-bezier(0.25,1,0.5,1),background .4s ease; }
+    .tdot.on { width:28px!important; background:#C8860A; }
+
+    /* Hours row */
+    .hr-row { transition:background .2s ease; border-radius:8px; }
+    .hr-row:hover { background:rgba(200,134,10,0.07); }
+
+    /* Mobile sticky */
+    #stickyBar {
+      position:fixed; bottom:0; left:0; right:0; z-index:900;
+      background:rgba(18,12,5,0.97); backdrop-filter:blur(20px);
+      padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+      box-shadow:0 -4px 30px rgba(0,0,0,0.4);
+      border-top:1px solid rgba(200,134,10,0.25);
+    }
+    @media(min-width:768px){#stickyBar{display:none!important}}
+
+    /* Gallery */
+    .gal { overflow:hidden; }
+    .gal-img { transition:transform .55s cubic-bezier(0.25,1,0.5,1); }
+    .gal:hover .gal-img { transform:scale(1.08); }
+    .gal-ov { position:absolute; inset:0; background:rgba(18,12,5,0);
+              transition:background .35s ease; display:flex; align-items:center; justify-content:center; }
+    .gal:hover .gal-ov { background:rgba(18,12,5,0.38); }
+    .gal-icon { opacity:0; transition:opacity .3s ease; font-size:1.6rem; }
+    .gal:hover .gal-icon { opacity:1; }
+
+    /* Image load fade */
+    img { transition: opacity 0.4s ease; }
+    img.lazy { opacity: 0; }
+    img.lazy.loaded { opacity: 1; }
+
+    /* Map */
+    .map-wrap { border-radius:16px; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.25); }
+
+    /* Bamboo texture strip (decorative) */
+    .bamboo-strip {
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(196,146,74,0.12) 0px, rgba(196,146,74,0.12) 28px,
+        rgba(196,146,74,0.05) 28px, rgba(196,146,74,0.05) 32px
+      );
+    }
+
+    /* ── Language toggle ──────────────────────────── */
+    .lang-btn {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:6px 12px; border-radius:100px;
+      border:1px solid rgba(200,134,10,0.45);
+      color:#FBF5ED; font-size:12px; font-weight:600; letter-spacing:.05em;
+      transition:background .3s ease, color .3s ease, transform .3s ease;
+    }
+    .lang-btn:hover { background:#C8860A; color:#120C05; transform:translateY(-1px); }
+
+    /* ── Modal (View details) ─────────────────────── */
+    .modal-overlay {
+      position:fixed; inset:0; z-index:1000;
+      background:rgba(10,7,3,0.78); backdrop-filter:blur(8px);
+      opacity:0; pointer-events:none; transition:opacity .4s ease;
+      display:flex; align-items:center; justify-content:center; padding:20px;
+    }
+    .modal-overlay.open { opacity:1; pointer-events:auto; }
+    .modal-panel {
+      background:#FBF5ED; border-radius:24px; overflow:hidden;
+      width:100%; max-width:880px; max-height:90vh; overflow-y:auto;
+      transform:translateY(30px) scale(.97); transition:transform .45s cubic-bezier(0.25,1,0.5,1);
+      box-shadow:0 40px 120px rgba(0,0,0,0.5);
+    }
+    .modal-overlay.open .modal-panel { transform:translateY(0) scale(1); }
+    .modal-close {
+      position:absolute; top:14px; right:14px; z-index:5;
+      width:42px; height:42px; border-radius:50%;
+      background:rgba(18,12,5,0.55); color:#FBF5ED; backdrop-filter:blur(8px);
+      display:flex; align-items:center; justify-content:center;
+      transition:background .25s ease, transform .25s ease;
+    }
+    .modal-close:hover { background:#C8860A; color:#120C05; transform:rotate(90deg); }
+    .dt-thumb { transition:transform .4s ease, opacity .25s ease; cursor:pointer; }
+    .dt-thumb:hover { transform:scale(1.05); }
+
+    /* ── Instagram grid ───────────────────────────── */
+    .ig-cell { overflow:hidden; position:relative; }
+    .ig-cell img { transition:transform .6s cubic-bezier(0.25,1,0.5,1); }
+    .ig-cell:hover img { transform:scale(1.09); }
+    .ig-ov { position:absolute; inset:0; background:linear-gradient(to top,rgba(18,12,5,0.7),transparent 60%);
+             opacity:0; transition:opacity .35s ease; display:flex; align-items:flex-end; padding:14px; }
+    .ig-cell:hover .ig-ov { opacity:1; }
+    .aud-pill { cursor:pointer; transition:all .3s ease; }
+    .aud-pill.on { background:#C8860A!important; color:#120C05!important; transform:translateY(-2px); box-shadow:0 8px 20px rgba(200,134,10,0.35); }
+
+    /* ── E-book — real two-page book ──────────────── */
+    .book-stage { perspective:2800px; perspective-origin:50% 42%; width:min(780px, 94vw); }
+    .book {
+      position:relative; width:100%;
+      height:calc(min(780px, 94vw) * 2 / 3);   /* explicit height (3:2) — avoids 0-height on mobile */
+      transform-style:preserve-3d;
+      transform:translateX(0);
+      transition:transform 1.2s cubic-bezier(0.645,0.045,0.355,1);
+    }
+    /* closed = single page centered : shift so the visible half sits mid-stage */
+    .book.at-start { transform:translateX(-25%); }   /* cover (right half) → center */
+    .book.at-end   { transform:translateX(25%); }    /* back cover (left half) → center */
+    /* soft drop-shadow under the open book — no coloured "inside page" */
+    .book-base {
+      position:absolute; inset:0; border-radius:6px; z-index:0;
+      background:transparent;
+      box-shadow:0 30px 80px rgba(0,0,0,0.45);
+      opacity:1; transition:opacity .55s ease;
+    }
+    .book.single .book-base { opacity:0; box-shadow:none; }
+    .leaf {
+      position:absolute; top:0; left:50%; width:50%; height:100%;
+      transform-style:preserve-3d; transform-origin:left center;
+      transition:transform 1.2s cubic-bezier(0.645,0.045,0.355,1);
+      will-change:transform;
+    }
+    .leaf.flipped { transform:rotateY(-180deg); }
+    .leaf .face {
+      position:absolute; inset:0; overflow:hidden; background:#160f06;
+      backface-visibility:hidden;
+    }
+    .leaf .face.back { transform:rotateY(180deg); }
+    /* full menu page shown completely & uniformly (no uneven cropping) */
+    .leaf .face > img { width:100%; height:100%; object-fit:contain; object-position:center; display:block; cursor:zoom-in; }
+    /* paper sheen — subtle gloss so the page reads like a printed sheet */
+    .leaf .face::after, .leaf .face::before { transition:opacity .4s ease; }
+    /* spine shading (binding side) for realism */
+    .leaf .face::before {
+      content:''; position:absolute; top:0; bottom:0; left:0; width:38px; z-index:4; pointer-events:none;
+      background:linear-gradient(90deg, rgba(0,0,0,0.26), rgba(0,0,0,0.06) 55%, transparent);
+    }
+    /* outer page-edge highlight */
+    .leaf .face::after {
+      content:''; position:absolute; top:0; bottom:0; right:0; width:14px; z-index:4; pointer-events:none;
+      background:linear-gradient(90deg, transparent, rgba(0,0,0,0.10));
+    }
+    /* soft shadow cast while turning */
+    .leaf.turning { box-shadow:0 0 70px 6px rgba(0,0,0,0.35); }
+    .face-inner { position:relative; z-index:1; width:100%; height:100%; overflow-y:auto; }
+    .menu-row { display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+                padding:8px 0; border-bottom:1px dashed rgba(42,31,14,0.18); }
+    .menu-row:last-child { border-bottom:0; }
+    @media(max-width:720px){
+      .face-inner { font-size:13px; }
+      .book-stage { perspective:1800px; }
+    }
+
+    /* ── Zoom lightbox (tap a menu page) ──────────── */
+    .zoom-wrap {
+      width:100%; height:100%;
+      overflow:auto; -webkit-overflow-scrolling:touch;
+    }
+    /* default: fit to width → scroll down to read every line (readable on mobile) */
+    #zoomImg {
+      display:block; width:100%; max-width:900px; height:auto; margin:0 auto;
+      box-shadow:0 24px 80px rgba(0,0,0,0.6); cursor:zoom-in;
+    }
+    /* tap again: full resolution, left-aligned so you can pan to ALL names */
+    #zoomImg.zoomed { width:auto; max-width:none; margin:0; cursor:zoom-out; }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-5">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-3 group">
+      <img src="images/logo-r.png" alt="เรือนชายน้ำ Logo" class="w-12 h-12 object-contain group-hover:scale-105 transition-transform">
+      <div>
+        <p class="text-cream font-display font-semibold text-lg leading-tight tracking-wide">เรือนชายน้ำ</p>
+        <p class="text-cream/50 text-xs leading-tight" style="letter-spacing:.12em;">RUEAN CHAINAM</p>
+      </div>
+    </a>
+
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#experience" class="nav-link text-cream/70 hover:text-cream text-sm font-medium">ประสบการณ์</a>
+      <a href="#menu"       class="nav-link text-cream/70 hover:text-cream text-sm font-medium">เมนู</a>
+      <a href="#instagram"  class="nav-link text-cream/70 hover:text-cream text-sm font-medium">Instagram</a>
+      <a href="#reviews"    class="nav-link text-cream/70 hover:text-cream text-sm font-medium">รีวิว</a>
+      <a href="#contact"    class="nav-link text-cream/70 hover:text-cream text-sm font-medium">ติดต่อ</a>
+      <button id="langBtn" onclick="toggleLang()" class="lang-btn" title="Switch language">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+        <span id="langLabel">EN</span>
+      </button>
+    </div>
+
+    <button id="hamburger" class="md:hidden text-cream p-2 rounded-lg hover:bg-white/10 transition-colors">
+      <svg id="ico1" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="ico2" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden mt-3">
+    <div class="bg-deep/96 backdrop-blur-xl rounded-2xl p-4 border border-amber/20 flex flex-col gap-1">
+      <a href="#experience" class="ml-link text-cream/80 text-sm py-2.5 px-4 rounded-xl hover:bg-white/8 transition-colors">ประสบการณ์</a>
+      <a href="#menu"       class="ml-link text-cream/80 text-sm py-2.5 px-4 rounded-xl hover:bg-white/8 transition-colors">เมนูแนะนำ</a>
+      <a href="#instagram"  class="ml-link text-cream/80 text-sm py-2.5 px-4 rounded-xl hover:bg-white/8 transition-colors">Instagram</a>
+      <a href="#reviews"    class="ml-link text-cream/80 text-sm py-2.5 px-4 rounded-xl hover:bg-white/8 transition-colors">รีวิว</a>
+      <a href="#contact"    class="ml-link text-cream/80 text-sm py-2.5 px-4 rounded-xl hover:bg-white/8 transition-colors">ติดต่อ</a>
+      <button onclick="toggleLang()" class="text-cream/80 text-sm py-2.5 px-4 rounded-xl hover:bg-white/8 transition-colors text-left flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+        <span id="langLabelMobile">English</span>
+      </button>
+      <div class="pt-2 border-t border-amber/15 mt-1 flex gap-2">
+        <a href="tel:+66xxxxxxxx" class="flex-1 bg-amber text-deep text-center py-2.5 rounded-xl text-sm font-bold">โทร</a>
+        <a href="https://line.me"  class="flex-1 bg-[#06C755] text-white text-center py-2.5 rounded-xl text-sm font-bold">Line</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════
+     HERO — real restaurant exterior at dusk
+══════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-glow"></div>
+
+  <div class="relative z-10 text-center text-cream px-6 max-w-5xl mx-auto pt-20">
+
+    <!-- Ambient badge -->
+    <div class="reveal inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-full glass text-sm text-cream/90">
+      <span class="w-2 h-2 bg-amber rounded-full" style="animation:starGlow 2s ease-in-out infinite;"></span>
+      ริมคลองสุนัขหอน · บ้านบ่อ · สมุทรสาคร · เปิดมากกว่า 20 ปี
+    </div>
+
+    <!-- Main title -->
+    <h1 class="reveal d1 font-thai font-bold text-cream leading-[1.1] mb-3"
+        style="font-size:clamp(2.1rem,5.5vw,4.2rem);">
+      ครบจบในที่เดียว
+    </h1>
+
+    <!-- Display title (Cormorant italic) -->
+    <p class="reveal d1 font-display italic text-amber/90 mb-4"
+       style="font-size:clamp(1.2rem,2.8vw,2rem); letter-spacing:.04em;">
+      The Bamboo Riverside Experience
+    </p>
+
+    <p class="reveal d2 text-cream/70 mb-10 max-w-2xl mx-auto leading-relaxed"
+       style="font-size:clamp(0.9rem,1.5vw,1.05rem);">
+      อาหารทะเลสด · คาเฟ่ Rustic Loft · ที่พักริมน้ำ · ดนตรีสด<br class="hidden sm:block">
+      บรรยากาศโครงสร้างไม้ไผ่ศิลปะริมคลองสุนัขหอน
+    </p>
+
+    <!-- CTAs -->
+    <div class="reveal d3 flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="#contact"
+         class="btn-wave bg-amber border-2 border-amber/50 text-deep font-bold px-8 py-4 rounded-full inline-flex items-center gap-3 shadow-2xl"
+         style="min-width:210px;justify-content:center;">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <circle cx="12" cy="11" r="3"/>
+        </svg>
+        ดูแผนที่
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="reveal d4 flex flex-wrap justify-center gap-x-8 gap-y-4 mt-14 pt-8 border-t border-cream/15">
+      <div class="text-center">
+        <p class="font-display italic text-3xl font-semibold text-amber">20<span class="text-lg">+</span></p>
+        <p class="text-xs text-cream/45 mt-0.5">ปีแห่งความไว้วางใจ</p>
+      </div>
+      <div class="hidden sm:block w-px bg-cream/12 self-stretch"></div>
+      <div class="text-center">
+        <p class="font-display italic text-3xl font-semibold text-amber">4.3<span class="text-lg">★</span></p>
+        <p class="text-xs text-cream/45 mt-0.5">คะแนน Wongnai</p>
+      </div>
+      <div class="hidden sm:block w-px bg-cream/12 self-stretch"></div>
+      <div class="text-center">
+        <p class="font-display italic text-3xl font-semibold text-amber">3-in-1</p>
+        <p class="text-xs text-cream/45 mt-0.5">ร้านอาหาร · คาเฟ่ · รีสอร์ท</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+    <p class="text-cream/30 text-xs tracking-[.2em] uppercase">Scroll</p>
+    <div class="bounce w-6 h-10 border-2 border-cream/20 rounded-full flex justify-center pt-2">
+      <div class="w-1.5 h-3 bg-amber/70 rounded-full"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     WAVE DIVIDER
+══════════════════════════════════════════════════ -->
+<div class="wdiv-wrap" style="background:#120C05;">
+  <svg class="wdiv-svg wl1" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="rgba(45,90,39,0.4)" d="M0,40C120,65,240,15,360,40C480,65,600,15,720,40C840,65,960,15,1080,40C1200,65,1320,15,1440,40L1440,70L0,70Z M1440,40C1560,65,1680,15,1800,40C1920,65,2040,15,2160,40C2280,65,2400,15,2520,40L2880,40L2880,70L1440,70Z"/>
+  </svg>
+  <svg class="wdiv-svg wl2" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="margin-top:-68px;">
+    <path fill="rgba(200,134,10,0.38)" d="M0,48C180,18,360,68,540,48C720,18,900,68,1080,48C1260,18,1440,68,1440,48L1440,70L0,70Z M1440,48C1620,18,1800,68,1980,48C2160,18,2340,68,2520,48L2880,48L2880,70L1440,70Z"/>
+  </svg>
+  <svg class="wdiv-svg wl3" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="margin-top:-68px;">
+    <path fill="#FBF5ED" d="M0,56C120,38,240,70,360,56C480,38,600,70,720,56C840,38,960,70,1080,56C1200,38,1320,70,1440,56L1440,70L0,70Z M1440,56C1560,38,1680,70,1800,56C1920,38,2040,70,2160,56C2280,38,2400,70,2520,56L2880,56L2880,70L1440,70Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 2 — 3-IN-1 EXPERIENCE  (real photos)
+══════════════════════════════════════════════════ -->
+<section id="experience" class="py-24 bg-cream">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="reveal pill bg-amber/12 text-amber mb-5">ประสบการณ์สุดพิเศษ</div>
+      <h2 class="reveal d1 font-thai font-bold text-deep leading-tight mb-4"
+          style="font-size:clamp(1.8rem,4vw,3rem);">
+        ครบในที่เดียว กับ <span class="grad-text">3-in-1 Experience</span>
+      </h2>
+      <div class="reveal d2 gold-line mx-auto mb-5"></div>
+      <p class="reveal d3 text-deep/50 max-w-lg mx-auto text-base leading-relaxed">
+        ไม่ว่าจะมาทานอาหาร นั่งชิลล์คาเฟ่ หรือพักผ่อนค้างคืน<br>เรือนชายน้ำพร้อมต้อนรับคุณเสมอ
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Card 1: Restaurant — bamboo interior -->
+      <div class="reveal exp-card bg-deep rounded-3xl overflow-hidden shadow-2xl cursor-default group">
+        <div class="relative h-60 overflow-hidden">
+          <img class="pc-img w-full h-full object-cover"
+               src="images/7c48b96f346842308115ed17afe9f4a0.jpg"
+               alt="ร้านอาหารเรือนชายน้ำ" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-deep via-transparent to-transparent"></div>
+          <span class="absolute top-4 right-4 bg-amber text-deep text-xs font-bold px-3 py-1 rounded-full">ร้านอาหาร</span>
+        </div>
+        <div class="p-7">
+          <div class="ec-body">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-amber/15 rounded-xl flex items-center justify-center text-xl text-amber">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+              </div>
+              <h3 class="font-thai font-bold text-cream text-xl">ร้านอาหาร</h3>
+            </div>
+            <p class="text-cream/60 text-sm leading-relaxed mb-5">
+              นั่งทานอาหารทะเลสดใต้โครงสร้างไม้ไผ่ศิลปะ ริมคลองสุนัขหอน บรรยากาศอันเป็นเอกลักษณ์ไม่เหมือนใคร
+            </p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="text-xs bg-amber/15 text-amber px-3 py-1.5 rounded-full">อาหารทะเลสด</span>
+              <span class="text-xs bg-amber/15 text-amber px-3 py-1.5 rounded-full">ไม้ไผ่ศิลปะ</span>
+              <span class="text-xs bg-amber/15 text-amber px-3 py-1.5 rounded-full">ริมน้ำ</span>
+            </div>
+            <button onclick="openDetail('restaurant')" class="w-full inline-flex items-center justify-center gap-2 border border-amber/40 text-amber hover:bg-amber hover:text-deep font-semibold text-sm py-2.5 rounded-xl transition-all duration-300">
+              ดูรายละเอียด
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Cafe — food spread featured -->
+      <div class="reveal d1 exp-card bg-cream-dk rounded-3xl overflow-hidden shadow-xl cursor-default group relative">
+        <div class="float absolute top-4 left-4 z-10 bg-amber text-deep text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">ยอดนิยม</div>
+        <div class="relative h-60 overflow-hidden">
+          <img class="pc-img w-full h-full object-cover"
+               src="images/db6796d151da4d0aa9151c7ead3188c1.jpg"
+               alt="คาเฟ่เรือนชายน้ำ เมนูคาเฟ่" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-bark/60 via-transparent to-transparent"></div>
+          <span class="absolute top-4 right-4 bg-green text-cream text-xs font-bold px-3 py-1 rounded-full">คาเฟ่</span>
+        </div>
+        <div class="p-7">
+          <div class="ec-body">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-amber/15 rounded-xl flex items-center justify-center text-xl text-amber">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4v-2z"/></svg>
+              </div>
+              <h3 class="font-thai font-bold text-deep text-xl">คาเฟ่</h3>
+            </div>
+            <p class="text-deep/60 text-sm leading-relaxed mb-5">
+              RUEAN CHAINAM Cafe บิงซู ครัวซอง วาฟเฟิล เครื่องดื่มคราฟต์ สไตล์ Rustic Loft ถ่ายรูปสวยทุกมุม
+            </p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="text-xs bg-amber/12 text-bark px-3 py-1.5 rounded-full">Specialty Coffee</span>
+              <span class="text-xs bg-amber/12 text-bark px-3 py-1.5 rounded-full">Bakery</span>
+              <span class="text-xs bg-amber/12 text-bark px-3 py-1.5 rounded-full">Bingsu</span>
+            </div>
+            <button onclick="openDetail('cafe')" class="w-full inline-flex items-center justify-center gap-2 border border-bark/30 text-bark hover:bg-bark hover:text-cream font-semibold text-sm py-2.5 rounded-xl transition-all duration-300">
+              ดูรายละเอียด
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Resort — luxury room -->
+      <div class="reveal d2 exp-card bg-deep rounded-3xl overflow-hidden shadow-2xl cursor-default group">
+        <div class="relative h-60 overflow-hidden">
+          <img class="pc-img w-full h-full object-cover"
+               src="images/36ed7b9793654a038e2bccde7af942e0.jpg"
+               alt="เรือนชายน้ำ รีสอร์ท ห้องพัก" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-deep via-transparent to-transparent"></div>
+          <span class="absolute top-4 right-4 bg-river-dk text-cream text-xs font-bold px-3 py-1 rounded-full">รีสอร์ท</span>
+        </div>
+        <div class="p-7">
+          <div class="ec-body">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-amber/15 rounded-xl flex items-center justify-center text-xl text-amber">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+              </div>
+              <h3 class="font-thai font-bold text-cream text-xl">รีสอร์ท</h3>
+            </div>
+            <p class="text-cream/60 text-sm leading-relaxed mb-5">
+              ห้องพัก Loft ผนังคอนกรีตดิบ ระเบียงอ่างจาคุซซีส่วนตัว ชมวิวแม่น้ำ 20+ ปีแห่งความไว้วางใจ
+            </p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="text-xs bg-amber/15 text-amber px-3 py-1.5 rounded-full">Jacuzzi ส่วนตัว</span>
+              <span class="text-xs bg-amber/15 text-amber px-3 py-1.5 rounded-full">วิวแม่น้ำ</span>
+              <span class="text-xs bg-amber/15 text-amber px-3 py-1.5 rounded-full">Loft Style</span>
+            </div>
+            <button onclick="openDetail('resort')" class="w-full inline-flex items-center justify-center gap-2 border border-amber/40 text-amber hover:bg-amber hover:text-deep font-semibold text-sm py-2.5 rounded-xl transition-all duration-300">
+              ดูรายละเอียด
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Full-width hero photo strip -->
+    <div class="reveal mt-10 rounded-3xl overflow-hidden shadow-2xl relative h-64 sm:h-80 cursor-default group">
+      <img class="pc-img w-full h-full object-cover"
+           src="images/9635091e06f541c1ae290ecc3428e085.jpg"
+           alt="บรรยากาศภายในร้าน เรือนชายน้ำ ไม้ไผ่" loading="lazy">
+      <div class="absolute inset-0 bg-gradient-to-r from-deep/75 via-deep/30 to-transparent flex items-center">
+        <div class="p-10 max-w-lg">
+          <p class="font-display italic text-amber/90 text-lg mb-2">Bamboo Cathedral Experience</p>
+          <h3 class="font-thai font-bold text-cream text-2xl sm:text-3xl leading-tight mb-3">
+            โครงสร้างไม้ไผ่ศิลปะ<br>เอกลักษณ์ที่ไม่เหมือนใคร
+          </h3>
+          <p class="text-cream/65 text-sm leading-relaxed">
+            สถาปัตยกรรมโค้งไม้ไผ่ขนาดใหญ่ เปรียบเสมือนมหาวิหารธรรมชาติ<br class="hidden sm:block">พร้อมแสงไฟหวายอบอุ่น สุดอลังการในแบบที่หาไม่ได้ที่ไหน
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 3 — SIGNATURE MENU  (real food photos)
+══════════════════════════════════════════════════ -->
+<section id="menu" class="py-24 bg-deep relative overflow-hidden">
+  <!-- Subtle bamboo texture -->
+  <div class="absolute inset-0 bamboo-strip opacity-100 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- Header -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
+      <div>
+        <div class="reveal pill bg-amber/20 text-amber mb-4">เมนูแนะนำ</div>
+        <h2 class="reveal d1 font-thai font-bold text-cream leading-tight"
+            style="font-size:clamp(1.8rem,4vw,3rem);">
+          เมนูซิกเนเจอร์<br><span class="grad-text">ที่คุณต้องลอง</span>
+        </h2>
+        <div class="reveal d2 gold-line mt-4 mb-5"></div>
+        <button onclick="openEbook()" class="reveal d2 btn-wave inline-flex items-center gap-2 bg-amber text-deep px-6 py-3 rounded-full text-sm font-bold shadow-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.247m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.247"/></svg>
+          เปิดเมนูเล่มเต็ม (E-book)
+        </button>
+      </div>
+      <!-- NET badge glassmorphism -->
+      <div class="reveal d3 glass rounded-2xl p-5 max-w-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-amber rounded-xl flex items-center justify-center text-xl shadow-lg text-deep font-bold text-sm">NET</div>
+          <div>
+            <p class="text-cream font-bold text-sm">ราคา NET</p>
+            <p class="text-cream/55 text-xs">ไม่มีบวกเพิ่มจุกจิก</p>
+          </div>
+        </div>
+        <p class="text-cream/40 text-xs mt-3 leading-relaxed">
+          ราคาที่เห็นคือราคาที่จ่าย ไม่มีค่าบริการ ไม่มี VAT ซ่อน
+        </p>
+      </div>
+    </div>
+
+    <!-- Featured dish — full width with river view -->
+    <div class="reveal menu-cell rounded-3xl overflow-hidden mb-6 relative h-72 sm:h-96 cursor-default shadow-2xl">
+      <img class="mc-img w-full h-full object-cover"
+           src="images/a1c94276ce664a27901b9af86da07f64.jpg"
+           alt="อาหารทะเลครบชุด ริมคลองสุนัขหอน" loading="lazy">
+      <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/30 to-transparent flex items-end">
+        <div class="p-8">
+          <span class="bg-amber text-deep text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">จัดเต็ม</span>
+          <h3 class="font-thai font-bold text-cream text-2xl sm:text-3xl leading-tight">
+            อาหารทะเลครบชุด ริมคลองสุนัขหอน
+          </h3>
+          <p class="text-cream/60 text-sm mt-1">กุ้งแม่น้ำ ปูม้า หอยแมลงภู่ ปลาหมึก สดจากท้องถิ่น</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-col menu grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Grilled giant shrimp -->
+      <div class="reveal menu-cell bg-bark/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-amber/15 hover:border-amber/40 transition-colors duration-400 group cursor-default">
+        <div class="relative h-48 overflow-hidden">
+          <img class="mc-img w-full h-full object-cover"
+               src="images/c0ee50b35a3547d198285b72659f0dcc.jpg"
+               alt="กุ้งแม่น้ำเผา" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-bark/80 to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-amber text-deep text-xs font-bold px-2.5 py-1 rounded-full">ซิกเนเจอร์</span>
+        </div>
+        <div class="p-5">
+          <h4 class="font-thai font-bold text-cream text-base mb-1">กุ้งแม่น้ำเผาเกลือ</h4>
+          <p class="text-cream/50 text-xs mb-3">สดจากคลองสุนัขหอน เเผาใหม่ หอม หวาน ตัวใหญ่</p>
+          <div class="flex justify-between items-center">
+            <span class="text-amber font-bold text-lg font-display">฿ 320</span>
+            <span class="text-xs text-cream/30 bg-cream/5 px-2.5 py-1 rounded-full border border-cream/10">NET</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Squid salad -->
+      <div class="reveal d1 menu-cell bg-bark/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-amber/15 hover:border-amber/40 transition-colors duration-400 group cursor-default">
+        <div class="relative h-48 overflow-hidden">
+          <img class="mc-img w-full h-full object-cover"
+               src="images/8f190eda4bb64cb19487b9aae68530c4.jpg"
+               alt="ยำปลาหมึกสด" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-bark/80 to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-green text-cream text-xs font-bold px-2.5 py-1 rounded-full">ชะคราม</span>
+        </div>
+        <div class="p-5">
+          <h4 class="font-thai font-bold text-cream text-base mb-1">ยำชะครามกุ้งสด</h4>
+          <p class="text-cream/50 text-xs mb-3">วัตถุดิบท้องถิ่น รสเปรี้ยวอมหวาน กลิ่นหอมชะคราม</p>
+          <div class="flex justify-between items-center">
+            <span class="text-amber font-bold text-lg font-display">฿ 150</span>
+            <span class="text-xs text-cream/30 bg-cream/5 px-2.5 py-1 rounded-full border border-cream/10">NET</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shrimp in sauce -->
+      <div class="reveal d2 menu-cell bg-bark/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-amber/15 hover:border-amber/40 transition-colors duration-400 group cursor-default">
+        <div class="relative h-48 overflow-hidden">
+          <img class="mc-img w-full h-full object-cover"
+               src="images/a0441a59b81c44f1aaf36817152fea63.jpg"
+               alt="กุ้งแม่น้ำซอส" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-bark/80 to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-amber text-deep text-xs font-bold px-2.5 py-1 rounded-full">เชฟแนะนำ</span>
+        </div>
+        <div class="p-5">
+          <h4 class="font-thai font-bold text-cream text-base mb-1">กุ้งแม่น้ำซอสเด็ด</h4>
+          <p class="text-cream/50 text-xs mb-3">ซอสสูตรพิเศษ หอมหวาน ราดบนกุ้งแม่น้ำตัวใหญ่</p>
+          <div class="flex justify-between items-center">
+            <span class="text-amber font-bold text-lg font-display">฿ 380</span>
+            <span class="text-xs text-cream/30 bg-cream/5 px-2.5 py-1 rounded-full border border-cream/10">NET</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fried calamari -->
+      <div class="reveal d3 menu-cell bg-bark/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-amber/15 hover:border-amber/40 transition-colors duration-400 group cursor-default relative">
+        <div class="absolute top-0 inset-x-0 flex justify-center z-10">
+          <span class="bg-amber text-deep text-xs font-bold px-4 py-1 rounded-b-xl shadow">เมนูฮิต</span>
+        </div>
+        <div class="relative h-48 overflow-hidden">
+          <img class="mc-img w-full h-full object-cover"
+               src="images/c68fc9c13ecd4994a8fa20dd5130d5cc.jpg"
+               alt="ปลาหมึกทอด" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-bark/80 to-transparent"></div>
+        </div>
+        <div class="p-5">
+          <h4 class="font-thai font-bold text-cream text-base mb-1">ปลาหมึกทอดกระเทียม</h4>
+          <p class="text-cream/50 text-xs mb-3">ทอดกรอบ หอมกระเทียม รสชาติเข้มข้น</p>
+          <div class="flex justify-between items-center">
+            <span class="text-amber font-bold text-lg font-display">฿ 180</span>
+            <span class="text-xs text-cream/30 bg-cream/5 px-2.5 py-1 rounded-full border border-cream/10">NET</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coconut soup -->
+      <div class="reveal d4 menu-cell bg-bark/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-amber/15 hover:border-amber/40 transition-colors duration-400 group cursor-default">
+        <div class="relative h-48 overflow-hidden">
+          <img class="mc-img w-full h-full object-cover object-top"
+               src="images/5dfff56c754d468f8ec0e51f2be3e127.jpg"
+               alt="กระเช้าเรือนชายน้ำ" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-bark/80 to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-green text-cream text-xs font-bold px-2.5 py-1 rounded-full">ซิกเนเจอร์</span>
+        </div>
+        <div class="p-5">
+          <h4 class="font-thai font-bold text-cream text-base mb-1">กระเช้าเรือนชายน้ำ</h4>
+          <p class="text-cream/50 text-xs mb-3">เสิร์ฟในมะพร้าวสด สุดพิเศษ เอกลักษณ์เฉพาะร้าน</p>
+          <div class="flex justify-between items-center">
+            <span class="text-amber font-bold text-lg font-display">฿ 350</span>
+            <span class="text-xs text-cream/30 bg-cream/5 px-2.5 py-1 rounded-full border border-cream/10">NET</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full menu CTA -->
+      <div class="reveal d4 cursor-pointer group" onclick="openEbook()">
+        <div class="h-full min-h-[260px] rounded-2xl border-2 border-dashed border-amber/25 hover:border-amber/55 transition-all duration-500 flex items-center justify-center hover:bg-amber/4">
+          <div class="text-center p-8">
+            <div class="w-16 h-16 bg-amber/20 rounded-full flex items-center justify-center text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform text-amber">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+            </div>
+            <p class="font-thai font-bold text-cream text-base mb-2">ดูเมนูทั้งหมด</p>
+            <p class="text-cream/40 text-xs mb-5">อาหารทะเล · คาเฟ่ · ของหวาน</p>
+            <span class="btn-wave inline-flex items-center gap-2 bg-amber text-deep px-5 py-2.5 rounded-full text-sm font-bold">
+              ดูเมนู →
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 4 — SOCIAL PROOF & CAFE VIBE
+══════════════════════════════════════════════════ -->
+<section id="reviews" class="py-24 bg-cream overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16">
+      <img src="images/logo-r.png" alt="เรือนชายน้ำ" class="reveal w-24 h-24 object-contain mx-auto mb-5">
+      <div class="reveal pill bg-amber/12 text-amber mb-5 mx-auto">รีวิวจากลูกค้า</div>
+      <h2 class="reveal d1 font-thai font-bold text-deep leading-tight mb-4"
+          style="font-size:clamp(1.8rem,4vw,3rem);">
+        ลูกค้าพูดถึงเรา<br><span class="grad-text">อย่างไรบ้าง?</span>
+      </h2>
+      <div class="reveal d2 gold-line mx-auto"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+      <!-- LEFT: Rating + Slider ─────────────────── -->
+      <div>
+        <!-- Rating Card -->
+        <div class="reveal bg-white rounded-2xl p-6 border-2 border-amber/25 shadow-xl mb-8"
+             style="background:linear-gradient(135deg,#fffdf5,#fff8e8);">
+          <div class="flex items-center gap-5">
+            <div class="text-center flex-shrink-0">
+              <p class="text-5xl font-bold text-deep font-display leading-none">4.3</p>
+              <div class="flex gap-0.5 justify-center mt-2 text-amber">
+                <span class="star text-xl">★</span>
+                <span class="star text-xl" style="animation-delay:.25s">★</span>
+                <span class="star text-xl" style="animation-delay:.5s">★</span>
+                <span class="star text-xl" style="animation-delay:.75s">★</span>
+                <span class="text-xl opacity-30">★</span>
+              </div>
+              <p class="text-xs text-deep/40 mt-1">คะแนนเฉลี่ย</p>
+            </div>
+            <div class="flex-1 pl-5 border-l border-amber/20">
+              <p class="font-bold text-deep text-lg leading-tight">Wongnai</p>
+              <p class="text-deep/45 text-xs mb-3">จากรีวิวหลายร้อยรีวิว</p>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-deep/40 w-14 flex-shrink-0">อาหาร</span>
+                  <div class="flex-1 h-1.5 bg-deep/8 rounded-full overflow-hidden">
+                    <div class="h-full bg-amber rounded-full" style="width:88%"></div>
+                  </div>
+                  <span class="text-xs font-semibold text-deep w-5">4.4</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-deep/40 w-14 flex-shrink-0">บรรยากาศ</span>
+                  <div class="flex-1 h-1.5 bg-deep/8 rounded-full overflow-hidden">
+                    <div class="h-full bg-amber rounded-full" style="width:92%"></div>
+                  </div>
+                  <span class="text-xs font-semibold text-deep w-5">4.6</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-deep/40 w-14 flex-shrink-0">บริการ</span>
+                  <div class="flex-1 h-1.5 bg-deep/8 rounded-full overflow-hidden">
+                    <div class="h-full bg-amber rounded-full" style="width:82%"></div>
+                  </div>
+                  <span class="text-xs font-semibold text-deep w-5">4.1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial Slider -->
+        <div class="reveal d1 overflow-hidden rounded-2xl">
+          <div id="tTrack">
+            <div class="tSlide">
+              <div class="bg-white rounded-2xl p-6 shadow-md border border-deep/6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div class="w-12 h-12 rounded-full bg-deep flex items-center justify-center text-cream font-bold text-lg flex-shrink-0">น</div>
+                  <div>
+                    <p class="font-thai font-semibold text-deep">นุ้ย W.</p>
+                    <span class="text-xs text-amber">★★★★★</span>
+                    <p class="text-xs text-deep/35 mt-0.5">Wongnai · ลูกค้าประจำ</p>
+                  </div>
+                </div>
+                <p class="text-deep/65 text-sm leading-relaxed italic">
+                  "มาครั้งแรกแล้วติดใจเลย! กุ้งแม่น้ำสดมาก บรรยากาศไม้ไผ่ริมน้ำสุดสวย ราคาไม่แพง ไม่มีค่าบริการ จะพาครอบครัวมาอีกแน่นอน"
+                </p>
+              </div>
+            </div>
+            <div class="tSlide">
+              <div class="bg-white rounded-2xl p-6 shadow-md border border-deep/6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div class="w-12 h-12 rounded-full bg-amber flex items-center justify-center text-deep font-bold text-lg flex-shrink-0">ก</div>
+                  <div>
+                    <p class="font-thai font-semibold text-deep">กิ๊ฟ P.</p>
+                    <span class="text-xs text-amber">★★★★</span>
+                    <p class="text-xs text-deep/35 mt-0.5">Wongnai · เพิ่งมา</p>
+                  </div>
+                </div>
+                <p class="text-deep/65 text-sm leading-relaxed italic">
+                  "บิงซูคาเฟ่อร่อยมาก บรรยากาศน่ารักสุดๆ เครื่องดื่มหลากหลาย ถ่ายรูปได้ทุกมุม แนะนำ RUEAN CHAINAM"
+                </p>
+              </div>
+            </div>
+            <div class="tSlide">
+              <div class="bg-white rounded-2xl p-6 shadow-md border border-deep/6">
+                <div class="flex items-start gap-4 mb-4">
+                  <div class="w-12 h-12 rounded-full bg-green flex items-center justify-center text-cream font-bold text-lg flex-shrink-0">ต</div>
+                  <div>
+                    <p class="font-thai font-semibold text-deep">ตั้ม B.</p>
+                    <span class="text-xs text-amber">★★★★★</span>
+                    <p class="text-xs text-deep/35 mt-0.5">Wongnai · พักรีสอร์ท</p>
+                  </div>
+                </div>
+                <p class="text-deep/65 text-sm leading-relaxed italic">
+                  "พักรีสอร์ทมา 2 คืน อ่างจาคุซซีส่วนตัว วิวแม่น้ำสวยมาก เงียบสงบ ห้องสไตล์ลอฟต์ดูแพง คุ้มค่ามากๆ"
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-5 px-1">
+            <div id="tDots" class="flex gap-2 items-center">
+              <div class="tdot on" style="width:28px;"></div>
+              <div class="tdot" style="width:10px;"></div>
+              <div class="tdot" style="width:10px;"></div>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="prevT()" class="w-9 h-9 rounded-full bg-deep/6 hover:bg-deep hover:text-cream text-deep flex items-center justify-center transition-all">←</button>
+              <button onclick="nextT()" class="w-9 h-9 rounded-full bg-amber text-deep flex items-center justify-center hover:bg-amber-lt transition-all">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Coffee + Gallery ──────────────── -->
+      <div class="reveal d2">
+
+        <!-- Coffee Card -->
+        <div class="flex items-center gap-5 bg-white rounded-2xl p-5 shadow-md border border-deep/6 mb-7">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="flex gap-2 items-end" style="height:38px;">
+              <span class="steam s1"></span>
+              <span class="steam s2"></span>
+              <span class="steam s3"></span>
+            </div>
+            <svg width="58" height="52" viewBox="0 0 60 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 18L12 46C12 48.2 13.8 50 16 50L44 50C46.2 50 48 48.2 48 46L52 18Z" fill="#2A1F0E"/>
+              <ellipse cx="30" cy="18.5" rx="21" ry="5" fill="#C8860A"/>
+              <rect x="7" y="13" width="46" height="9" rx="4.5" fill="#2A1F0E"/>
+              <path d="M48 26Q62 26 62 34Q62 42 48 42" stroke="#2A1F0E" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+              <ellipse cx="30" cy="52" rx="26" ry="3.5" fill="#C8860A" opacity="0.3"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-thai font-bold text-deep text-base mb-1">RUEAN CHAINAM Cafe</h4>
+            <p class="text-deep/55 text-sm leading-relaxed">
+              เครื่องดื่ม Specialty Coffee คราฟต์<br>บิงซู เบเกอรี่สด ในบรรยากาศริมน้ำ
+            </p>
+          </div>
+        </div>
+
+        <!-- Live music note -->
+        <div class="reveal mb-5 rounded-2xl overflow-hidden relative h-44 cursor-default group">
+          <img class="gal-img w-full h-full object-cover"
+               src="images/18c7fdf5152043b093c837a147db0fb0.jpg"
+               alt="ดนตรีสด เรือนชายน้ำ" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-r from-deep/80 via-deep/40 to-transparent flex items-center">
+            <div class="p-6">
+              <p class="text-amber text-xs font-bold uppercase tracking-widest mb-1">Live Music</p>
+              <p class="font-thai font-bold text-cream text-lg leading-tight">ดนตรีสดทุกคืน</p>
+              <p class="text-cream/60 text-xs mt-1">อะคูสติกริมน้ำ บรรยากาศอบอุ่น</p>
+            </div>
+          </div>
+          <div class="gal-ov">
+            <span class="gal-icon text-amber">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <p class="font-thai font-semibold text-deep/60 text-sm mb-3 px-1">บรรยากาศ Check-in</p>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="gal aspect-square rounded-2xl relative cursor-pointer overflow-hidden">
+            <img class="gal-img w-full h-full object-cover"
+                 src="images/03d6559244814e428ba7e68f7763d92b.jpg"
+                 alt="จาคุซซีริมน้ำ" loading="lazy">
+            <div class="gal-ov"><span class="gal-icon text-cream">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+            </span></div>
+          </div>
+          <div class="gal aspect-square rounded-2xl relative cursor-pointer overflow-hidden">
+            <img class="gal-img w-full h-full object-cover"
+                 src="images/9635091e06f541c1ae290ecc3428e085.jpg"
+                 alt="บรรยากาศไม้ไผ่" loading="lazy">
+            <div class="gal-ov"><span class="gal-icon text-cream">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+            </span></div>
+          </div>
+          <div class="gal aspect-square rounded-2xl relative cursor-pointer overflow-hidden">
+            <img class="gal-img w-full h-full object-cover"
+                 src="images/9994603bae9f471d90ddd03959a438e9.jpg"
+                 alt="อาหารทะเลครบชุด" loading="lazy">
+            <div class="gal-ov"><span class="gal-icon text-cream">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+            </span></div>
+          </div>
+          <div class="gal aspect-square rounded-2xl relative cursor-pointer overflow-hidden">
+            <img class="gal-img w-full h-full object-cover"
+                 src="images/d63075c89375426f8378f36d40ad983e.jpg"
+                 alt="คาเฟ่ บิงซู" loading="lazy">
+            <div class="gal-ov"><span class="gal-icon text-cream">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+            </span></div>
+          </div>
+          <div class="gal aspect-square rounded-2xl relative cursor-pointer overflow-hidden">
+            <img class="gal-img w-full h-full object-cover"
+                 src="images/5acf6e3436124dfab27b95113e0e2d97.jpg"
+                 alt="ภายนอกร้าน" loading="lazy">
+            <div class="gal-ov"><span class="gal-icon text-cream">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+            </span></div>
+          </div>
+          <div class="gal aspect-square rounded-2xl relative cursor-pointer overflow-hidden">
+            <img class="gal-img w-full h-full object-cover"
+                 src="images/7c48b96f346842308115ed17afe9f4a0.jpg"
+                 alt="โต๊ะริมน้ำ" loading="lazy">
+            <div class="gal-ov"><span class="gal-icon text-cream">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+            </span></div>
+          </div>
+        </div>
+        <p class="text-center mt-4">
+          <a href="#" class="inline-flex items-center gap-1.5 text-deep/40 hover:text-amber text-xs transition-colors">
+            ดูรูปเพิ่มเติมที่ Facebook
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 4.5 — INSTAGRAM / FOR EVERYONE
+══════════════════════════════════════════════════ -->
+<section id="instagram" class="py-24 bg-cream-dk overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-12">
+      <div class="reveal pill bg-amber/12 text-amber mb-5">@rueanchainam</div>
+      <h2 class="reveal d1 font-thai font-bold text-deep leading-tight mb-4"
+          style="font-size:clamp(1.8rem,4vw,3rem);">
+        ตามเราบน <span class="grad-text">Instagram</span>
+      </h2>
+      <div class="reveal d2 gold-line mx-auto mb-5"></div>
+      <p class="reveal d3 text-deep/50 max-w-xl mx-auto text-base leading-relaxed">
+        ไม่ว่าคุณจะเป็นกลุ่มไหน เรามีมุมที่ใช่สำหรับคุณ — เลือกดูตามไลฟ์สไตล์ของคุณ
+      </p>
+    </div>
+
+    <!-- Audience filter -->
+    <div class="reveal flex flex-wrap justify-center gap-2.5 mb-10">
+      <button class="aud-pill on pill bg-white text-deep border border-deep/10" data-aud="all">ทั้งหมด</button>
+      <button class="aud-pill pill bg-white text-deep border border-deep/10" data-aud="family">ครอบครัว</button>
+      <button class="aud-pill pill bg-white text-deep border border-deep/10" data-aud="couple">คู่รัก</button>
+      <button class="aud-pill pill bg-white text-deep border border-deep/10" data-aud="cafe">สายคาเฟ่</button>
+      <button class="aud-pill pill bg-white text-deep border border-deep/10" data-aud="music">สายดนตรี/ปาร์ตี้</button>
+      <button class="aud-pill pill bg-white text-deep border border-deep/10" data-aud="work">Workation</button>
+    </div>
+
+    <!-- IG grid -->
+    <div id="igGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+
+      <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener" class="ig-cell aspect-square rounded-2xl shadow-lg" data-aud="family">
+        <img class="w-full h-full object-cover" src="images/a1c94276ce664a27901b9af86da07f64.jpg" alt="อาหารทะเลครบโต๊ะ" loading="lazy">
+        <div class="ig-ov"><p class="text-cream text-xs font-semibold leading-tight">อาหารทะเลครบโต๊ะ<br><span class="text-cream/70">#มากันทั้งครอบครัว</span></p></div>
+      </a>
+
+      <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener" class="ig-cell aspect-square rounded-2xl shadow-lg" data-aud="couple">
+        <img class="w-full h-full object-cover" src="images/03d6559244814e428ba7e68f7763d92b.jpg" alt="จาคุซซีริมน้ำคู่รัก" loading="lazy">
+        <div class="ig-ov"><p class="text-cream text-xs font-semibold leading-tight">จาคุซซีส่วนตัว<br><span class="text-cream/70">#ทริปคู่รัก</span></p></div>
+      </a>
+
+      <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener" class="ig-cell aspect-square rounded-2xl shadow-lg" data-aud="cafe">
+        <img class="w-full h-full object-cover" src="images/d63075c89375426f8378f36d40ad983e.jpg" alt="คาเฟ่ บิงซู" loading="lazy">
+        <div class="ig-ov"><p class="text-cream text-xs font-semibold leading-tight">บิงซู & เครื่องดื่มคราฟต์<br><span class="text-cream/70">#สายคาเฟ่</span></p></div>
+      </a>
+
+      <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener" class="ig-cell aspect-square rounded-2xl shadow-lg" data-aud="music">
+        <img class="w-full h-full object-cover" src="images/18c7fdf5152043b093c837a147db0fb0.jpg" alt="ดนตรีสด" loading="lazy">
+        <div class="ig-ov"><p class="text-cream text-xs font-semibold leading-tight">ดนตรีสดทุกคืน<br><span class="text-cream/70">#สังสรรค์ริมน้ำ</span></p></div>
+      </a>
+
+      <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener" class="ig-cell aspect-square rounded-2xl shadow-lg" data-aud="work">
+        <img class="w-full h-full object-cover" src="images/9635091e06f541c1ae290ecc3428e085.jpg" alt="มุมไม้ไผ่ถ่ายรูป" loading="lazy">
+        <div class="ig-ov"><p class="text-cream text-xs font-semibold leading-tight">มุมชิล นั่งทำงานได้<br><span class="text-cream/70">#Workation</span></p></div>
+      </a>
+
+      <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener" class="ig-cell aspect-square rounded-2xl shadow-lg" data-aud="couple">
+        <img class="w-full h-full object-cover" src="images/36ed7b9793654a038e2bccde7af942e0.jpg" alt="ห้องพักลอฟต์" loading="lazy">
+        <div class="ig-ov"><p class="text-cream text-xs font-semibold leading-tight">ห้องพักสไตล์ลอฟต์<br><span class="text-cream/70">#พักผ่อนริมน้ำ</span></p></div>
+      </a>
+
+      <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener" class="ig-cell aspect-square rounded-2xl shadow-lg" data-aud="cafe">
+        <img class="w-full h-full object-cover" src="images/db6796d151da4d0aa9151c7ead3188c1.jpg" alt="เมนูคาเฟ่" loading="lazy">
+        <div class="ig-ov"><p class="text-cream text-xs font-semibold leading-tight">เบเกอรี่สดใหม่<br><span class="text-cream/70">#คาเฟ่ฮอปปิ้ง</span></p></div>
+      </a>
+
+      <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener" class="ig-cell aspect-square rounded-2xl shadow-lg" data-aud="family">
+        <img class="w-full h-full object-cover" src="images/7c48b96f346842308115ed17afe9f4a0.jpg" alt="โต๊ะริมน้ำ" loading="lazy">
+        <div class="ig-ov"><p class="text-cream text-xs font-semibold leading-tight">โต๊ะริมคลองสุนัขหอน<br><span class="text-cream/70">#วิวหลักล้าน</span></p></div>
+      </a>
+
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener"
+         class="btn-wave inline-flex items-center gap-3 bg-deep text-cream px-8 py-4 rounded-full font-bold shadow-xl">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.35 2.67.94 3.34.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12-.66-.66-1.33-1.08-2.12-1.38-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 114-4 4 4 0 01-4 4zm6.41-10.85a1.44 1.44 0 11-1.44-1.44 1.44 1.44 0 011.44 1.44z"/></svg>
+        ติดตาม @rueanchainam
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 5 — FOOTER & CONTACT
+══════════════════════════════════════════════════ -->
+<section id="contact" class="py-20 bg-deep relative overflow-hidden">
+  <div class="absolute inset-0 bamboo-strip opacity-100 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- Top -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+
+      <!-- Map -->
+      <div class="reveal">
+        <div class="mb-5 flex items-center gap-3">
+          <img src="images/logo-r.png" alt="เรือนชายน้ำ Logo" class="w-10 h-10 object-contain">
+          <h3 class="font-thai font-bold text-cream text-xl">ตำแหน่งร้าน</h3>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://maps.google.com/maps?q=เรือนชายน้ำ+ริมคลองสุนัขหอน+สมุทรสาคร&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="แผนที่เรือนชายน้ำ"></iframe>
+        </div>
+        <div class="mt-4 flex items-start gap-3 glass-dark rounded-xl p-4">
+          <span class="text-amber text-lg mt-0.5 flex-shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+          </span>
+          <div>
+            <p class="text-cream font-semibold text-sm">เรือนชายน้ำ คาเฟ่ & ร้านอาหาร</p>
+            <p class="text-cream/50 text-sm leading-relaxed mt-1">ริมคลองสุนัขหอน ตำบลบ้านบ่อ อำเภอเมือง จังหวัดสมุทรสาคร</p>
+            <a href="https://www.google.com/maps/place/%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B8%8A%E0%B8%B2%E0%B8%A2%E0%B8%99%E0%B9%89%E0%B8%B3/data=!4m2!3m1!1s0x30e2c9e79727f0bd:0x51f52ff11b0bc997" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-amber text-sm mt-2 hover:text-amber-lt transition-colors">
+              นำทาง Google Maps
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="mt-3 flex items-center gap-3 bg-green/20 border border-green/30 rounded-xl p-4">
+          <span class="text-amber text-2xl flex-shrink-0">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M13 3H6v18h4v-6h3c3.31 0 6-2.69 6-6s-2.69-6-6-6zm.2 8H10V7h3.2c1.1 0 2 .9 2 2s-.9 2-2 2z"/></svg>
+          </span>
+          <div>
+            <p class="text-cream font-bold text-sm">ที่จอดรถ: สะดวก & กว้างขวาง</p>
+            <p class="text-cream/50 text-xs mt-0.5">มีที่จอดรถเพียงพอสำหรับทุกคัน ไม่ต้องกังวล</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hours + Contact -->
+      <div class="reveal d1">
+        <h3 class="font-thai font-bold text-cream text-xl mb-5 flex items-center gap-3">
+          <span class="w-9 h-9 bg-amber rounded-xl flex items-center justify-center text-base shadow text-deep">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </span>
+          เวลาเปิด-ปิด
+        </h3>
+
+        <div class="glass-dark rounded-xl overflow-hidden mb-3">
+          <div class="bg-amber/15 px-5 py-3 border-b border-amber/10">
+            <p class="text-amber font-semibold text-sm">โซนคาเฟ่ RUEAN CHAINAM</p>
+          </div>
+          <div class="px-5 py-3 space-y-1.5">
+            <div class="hr-row flex justify-between items-center py-2 px-2">
+              <span class="text-cream/60 text-sm">วันธรรมดา (จ–ศ)</span>
+              <span class="text-cream font-semibold text-sm">09:00 – 20:00</span>
+            </div>
+            <div class="hr-row flex justify-between items-center py-2 px-2">
+              <span class="text-cream/60 text-sm flex items-center gap-2">
+                วันหยุด (ส–อา)
+                <span class="text-xs bg-amber/25 text-amber px-2 py-0.5 rounded-full">แนะนำ</span>
+              </span>
+              <span class="text-cream font-semibold text-sm">08:00 – 21:00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-dark rounded-xl overflow-hidden mb-7">
+          <div class="bg-cream/8 px-5 py-3 border-b border-cream/8">
+            <p class="text-cream font-semibold text-sm">โซนร้านอาหาร & ดนตรีสด</p>
+          </div>
+          <div class="px-5 py-3 space-y-1.5">
+            <div class="hr-row flex justify-between items-center py-2 px-2">
+              <span class="text-cream/60 text-sm">มื้อเย็น + ดนตรีสด</span>
+              <span class="text-cream font-semibold text-sm">17:00 – 22:00</span>
+            </div>
+            <div class="hr-row flex justify-between items-center py-2 px-2">
+              <span class="text-cream/60 text-sm flex items-center gap-2">
+                เสาร์–อาทิตย์
+                <span class="text-xs bg-amber/25 text-amber px-2 py-0.5 rounded-full">ขยายเวลา</span>
+              </span>
+              <span class="text-cream font-semibold text-sm">10:30 – 22:30</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4 flex items-center gap-3">
+          <img src="images/logo-r.png" alt="เรือนชายน้ำ Logo" class="w-10 h-10 object-contain">
+          <h3 class="font-thai font-bold text-cream text-xl">ช่องทางติดต่อ</h3>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a href="tel:+66xxxxxxxx" class="flex items-center gap-3 glass-dark hover:bg-amber/15 border border-amber/10 hover:border-amber/35 rounded-xl p-4 transition-all duration-300 group">
+            <svg class="w-8 h-8 flex-shrink-0 text-amber group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            <div><p class="text-cream font-semibold text-sm">โทรศัพท์</p><p class="text-cream/40 text-xs">กดโทรเลย</p></div>
+          </a>
+          <a href="https://line.me" class="flex items-center gap-3 glass-dark hover:bg-[#06C755]/20 border border-amber/10 hover:border-[#06C755]/40 rounded-xl p-4 transition-all duration-300 group">
+            <svg class="w-8 h-8 flex-shrink-0 text-[#06C755] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+            </svg>
+            <div><p class="text-cream font-semibold text-sm">Line</p><p class="text-cream/40 text-xs">แชทได้เลย</p></div>
+          </a>
+          <a href="#" class="flex items-center gap-3 glass-dark hover:bg-blue-500/20 border border-amber/10 hover:border-blue-400/40 rounded-xl p-4 transition-all duration-300 group">
+            <svg class="w-8 h-8 flex-shrink-0 text-blue-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            <div><p class="text-cream font-semibold text-sm">Facebook</p><p class="text-cream/40 text-xs">ไลก์เพจ</p></div>
+          </a>
+          <a href="https://instagram.com/rueanchainam" target="_blank" rel="noopener" class="flex items-center gap-3 glass-dark hover:bg-pink-500/15 border border-amber/10 hover:border-pink-400/40 rounded-xl p-4 transition-all duration-300 group">
+            <svg class="w-8 h-8 flex-shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="url(#igGrad)">
+              <defs><linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FFD600"/><stop offset="0.5" stop-color="#FF0069"/><stop offset="1" stop-color="#7638FA"/></linearGradient></defs>
+              <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.35 2.67.94 3.34.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12-.66-.66-1.33-1.08-2.12-1.38-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 114-4 4 4 0 01-4 4zm6.41-10.85a1.44 1.44 0 11-1.44-1.44 1.44 1.44 0 011.44 1.44z"/>
+            </svg>
+            <div><p class="text-cream font-semibold text-sm">Instagram</p><p class="text-cream/40 text-xs">ตามเราที่นี่</p></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer bottom bar -->
+    <div class="border-t border-amber/12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+      <div class="flex items-center gap-3">
+        <img src="images/logo-r.png" alt="เรือนชายน้ำ Logo" class="w-10 h-10 object-contain">
+        <div>
+          <p class="text-cream font-display font-semibold text-base leading-tight">เรือนชายน้ำ</p>
+          <p class="text-cream/35 text-xs" style="letter-spacing:.1em;">RUEAN CHAINAM · Samut Sakhon</p>
+        </div>
+      </div>
+      <p class="text-cream/20 text-xs text-center order-last sm:order-none">
+        © 2024 เรือนชายน้ำ คาเฟ่ & ร้านอาหาร · All Rights Reserved
+      </p>
+      <a href="#hero" class="text-cream/30 hover:text-amber text-sm transition-colors">กลับด้านบน ↑</a>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile spacer -->
+<div class="md:hidden h-20"></div>
+
+<!-- ══════════════════════════════════════════════════
+     MOBILE STICKY BAR
+══════════════════════════════════════════════════ -->
+<div id="stickyBar">
+  <div class="flex gap-3 max-w-sm mx-auto">
+    <a href="tel:+66xxxxxxxx"
+       class="flex-1 flex items-center justify-center gap-2 bg-amber text-deep rounded-xl py-3 font-thai font-bold text-sm shadow-lg active:scale-95 transition-transform">
+      <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+      </svg>
+      โทรเลย
+    </a>
+    <a href="https://line.me"
+       class="flex-1 flex items-center justify-center gap-2 bg-[#06C755] text-white rounded-xl py-3 font-thai font-bold text-sm shadow-lg active:scale-95 transition-transform">
+      <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+      </svg>
+      Line Us
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     MODAL — VIEW DETAILS
+══════════════════════════════════════════════════ -->
+<div id="detailModal" class="modal-overlay" onclick="if(event.target===this)closeDetail()">
+  <div class="modal-panel relative">
+    <button class="modal-close" onclick="closeDetail()" aria-label="Close">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div id="detailContent"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     MODAL — E-BOOK MENU (flipbook)
+══════════════════════════════════════════════════ -->
+<div id="ebookModal" class="modal-overlay" onclick="if(event.target===this)closeEbook()">
+  <button class="modal-close" onclick="closeEbook()" aria-label="Close" style="top:18px;right:18px;">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+
+  <div class="flex flex-col items-center gap-5 w-full">
+    <div class="book-stage">
+      <div class="book" id="book">
+        <div class="book-base"></div>
+        <!-- leaves are built by JS from images/menu/ (1.jpg ... 15.jpg) -->
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex items-center gap-5">
+      <button onclick="ebookPrev()" class="w-11 h-11 rounded-full bg-cream/15 hover:bg-amber hover:text-deep text-cream flex items-center justify-center transition-all">←</button>
+      <span id="ebookPage" class="text-cream/70 text-sm font-medium min-w-[72px] text-center">ปก</span>
+      <button onclick="ebookNext()" class="w-11 h-11 rounded-full bg-amber text-deep hover:bg-amber-lt flex items-center justify-center transition-all">→</button>
+    </div>
+    <p class="text-cream/40 text-xs">แตะที่หน้าเพื่อซูม · ใช้ลูกศรเปิดหน้า</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     MODAL — ZOOM (tap a menu page)
+══════════════════════════════════════════════════ -->
+<div id="zoomModal" class="modal-overlay" onclick="if(event.target===this)closeZoom()">
+  <button class="modal-close" onclick="closeZoom()" aria-label="Close" style="top:18px;right:18px;z-index:10;">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+  <div class="zoom-wrap" id="zoomWrap" onclick="if(event.target===this)closeZoom()">
+    <img id="zoomImg" alt="เมนู (ซูม)">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     JS
+══════════════════════════════════════════════════ -->
+<script>
+  // Page load
+  window.addEventListener('load', () => document.body.classList.add('loaded'));
+
+  // Navbar scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+  // Mobile menu
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  const i1 = document.getElementById('ico1'), i2 = document.getElementById('ico2');
+  let open = false;
+  ham.addEventListener('click', () => {
+    open = !open;
+    mob.classList.toggle('hidden', !open);
+    i1.classList.toggle('hidden', open);
+    i2.classList.toggle('hidden', !open);
+  });
+  document.querySelectorAll('.ml-link').forEach(l => l.addEventListener('click', () => {
+    mob.classList.add('hidden'); i1.classList.remove('hidden'); i2.classList.add('hidden'); open = false;
+  }));
+
+  // Scroll reveal
+  const ro = new IntersectionObserver(entries =>
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  setTimeout(() => document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('in')), 150);
+
+  // Testimonial slider
+  let tCur = 0;
+  const TN = 3;
+  let tT;
+  function goT(i) {
+    tCur = (i + TN) % TN;
+    document.getElementById('tTrack').style.transform = `translateX(-${tCur * 100}%)`;
+    document.querySelectorAll('.tdot').forEach((d, idx) => {
+      d.classList.toggle('on', idx === tCur);
+      d.style.width = idx === tCur ? '28px' : '10px';
+    });
+  }
+  function nextT() { goT(tCur + 1); rst(); }
+  function prevT() { goT(tCur - 1); rst(); }
+  function rst() { clearInterval(tT); tT = setInterval(nextT, 5200); }
+  tT = setInterval(nextT, 5200);
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id === '#') return;
+      const t = document.querySelector(id);
+      if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 76, behavior: 'smooth' }); }
+    });
+  });
+
+  /* ══════════════ MODAL HELPERS ══════════════ */
+  function openModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+  function closeDetail(){ closeModal('detailModal'); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeModal('zoomModal'); closeModal('detailModal'); closeModal('ebookModal'); }
+  });
+
+  /* ══════════════ VIEW DETAILS ══════════════ */
+  const DETAILS = {
+    restaurant: {
+      img: 'images/7c48b96f346842308115ed17afe9f4a0.jpg',
+      gallery: [
+        'images/9635091e06f541c1ae290ecc3428e085.jpg',
+        'images/a1c94276ce664a27901b9af86da07f64.jpg',
+        'images/9994603bae9f471d90ddd03959a438e9.jpg'
+      ],
+      th: { tag:'ร้านอาหาร', title:'ร้านอาหารริมคลองสุนัขหอน',
+        desc:'นั่งทานอาหารทะเลสดใต้โครงสร้างไม้ไผ่ศิลปะขนาดใหญ่ ริมคลองสุนัขหอน บรรยากาศอบอุ่นด้วยแสงไฟหวาย พร้อมดนตรีสดทุกค่ำคืน เหมาะทั้งมื้อครอบครัวและสังสรรค์',
+        features:['อาหารทะเลสดจากท้องถิ่นทุกวัน','โครงสร้างไม้ไผ่ศิลปะ มุมถ่ายรูปสวยทุกจุด','ดนตรีสดอะคูสติกริมน้ำ','ราคา NET ไม่มีชาร์จเพิ่ม'],
+        info:[{k:'เวลาเปิด',v:'17:00 – 22:00'},{k:'ราคาเฉลี่ย',v:'฿200–400 / คน'},{k:'ที่นั่ง',v:'ริมน้ำ & ในร่ม'}] },
+      en: { tag:'Restaurant', title:'Riverside Restaurant',
+        desc:'Enjoy fresh seafood beneath a grand artistic bamboo structure by the Khlong Sunak Hon. Warm rattan lighting and live music every evening — perfect for family meals and gatherings.',
+        features:['Fresh local seafood daily','Artistic bamboo architecture, photo spots everywhere','Live riverside acoustic music','NET prices, no extra charges'],
+        info:[{k:'Open',v:'5:00 – 10:00 PM'},{k:'Avg. price',v:'฿200–400 / person'},{k:'Seating',v:'Riverside & indoor'}] }
+    },
+    cafe: {
+      img: 'images/db6796d151da4d0aa9151c7ead3188c1.jpg',
+      gallery: [
+        'images/d63075c89375426f8378f36d40ad983e.jpg',
+        'images/db6796d151da4d0aa9151c7ead3188c1.jpg',
+        'images/9635091e06f541c1ae290ecc3428e085.jpg'
+      ],
+      th: { tag:'คาเฟ่', title:'RUEAN CHAINAM Cafe',
+        desc:'คาเฟ่สไตล์ Rustic Loft ริมน้ำ เสิร์ฟ Specialty Coffee คราฟต์ บิงซู วาฟเฟิล และเบเกอรี่สดใหม่ทุกวัน บรรยากาศชิล นั่งทำงานหรือถ่ายรูปได้ทั้งวัน',
+        features:['Specialty Coffee & เครื่องดื่มคราฟต์','บิงซู วาฟเฟิล เบเกอรี่สดใหม่','มุมถ่ายรูปสไตล์ลอฟต์','Wi-Fi ฟรี เหมาะกับ Workation'],
+        info:[{k:'เวลาเปิด',v:'09:00 – 20:00'},{k:'ราคาเฉลี่ย',v:'฿55–180'},{k:'ไฮไลต์',v:'บิงซู & กาแฟคราฟต์'}] },
+      en: { tag:'Cafe', title:'RUEAN CHAINAM Cafe',
+        desc:'A riverside Rustic Loft cafe serving craft specialty coffee, bingsu, waffles and fresh bakery daily. A chill space to work or take photos all day long.',
+        features:['Specialty coffee & craft drinks','Bingsu, waffles & fresh bakery','Loft-style photo corners','Free Wi-Fi — great for workation'],
+        info:[{k:'Open',v:'9:00 AM – 8:00 PM'},{k:'Avg. price',v:'฿55–180'},{k:'Highlight',v:'Bingsu & craft coffee'}] }
+    },
+    resort: {
+      img: 'images/36ed7b9793654a038e2bccde7af942e0.jpg',
+      gallery: [
+        'images/03d6559244814e428ba7e68f7763d92b.jpg',
+        'images/36ed7b9793654a038e2bccde7af942e0.jpg',
+        'images/9635091e06f541c1ae290ecc3428e085.jpg'
+      ],
+      th: { tag:'รีสอร์ท', title:'ห้องพักริมน้ำสไตล์ลอฟต์',
+        desc:'ห้องพัก Loft ผนังคอนกรีตดิบ ตกแต่งอบอุ่น มีระเบียงอ่างจาคุซซีส่วนตัวชมวิวคลองสุนัขหอน เงียบสงบ เป็นส่วนตัว เหมาะกับทริปคู่รักและพักผ่อนสุดสัปดาห์',
+        features:['อ่างจาคุซซีส่วนตัวทุกห้อง','ระเบียงวิวคลองสุนัขหอน','ห้องสไตล์ลอฟต์ตกแต่งอบอุ่น','เปิดบริการมากกว่า 20 ปี'],
+        info:[{k:'เช็คอิน',v:'14:00'},{k:'เช็คเอาท์',v:'12:00'},{k:'ราคา/คืน',v:'เริ่มต้น ฿1,500'}] },
+      en: { tag:'Resort', title:'Loft-Style Riverside Rooms',
+        desc:'Loft rooms with raw concrete walls and warm decor, each with a private jacuzzi balcony overlooking the Khlong Sunak Hon. Quiet and private — perfect for couples and weekend getaways.',
+        features:['Private jacuzzi in every room','Balcony with river views','Warmly decorated loft rooms','Over 20 years of service'],
+        info:[{k:'Check-in',v:'2:00 PM'},{k:'Check-out',v:'12:00 PM'},{k:'Per night',v:'from ฿1,500'}] }
+    }
+  };
+  function openDetail(key){
+    const d = DETAILS[key]; const L = curLang; const t = d[L];
+    document.getElementById('detailContent').innerHTML = `
+      <div class="relative h-60 sm:h-72">
+        <img src="${d.img}" class="w-full h-full object-cover" alt="${t.title}">
+        <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/25 to-transparent"></div>
+        <div class="absolute bottom-0 p-7">
+          <span class="bg-amber text-deep text-xs font-bold px-3 py-1 rounded-full">${t.tag}</span>
+          <h3 class="font-thai font-bold text-cream text-2xl sm:text-3xl mt-2 leading-tight">${t.title}</h3>
+        </div>
+      </div>
+      <div class="p-7">
+        <p class="text-deep/70 leading-relaxed mb-6">${t.desc}</p>
+        <div class="grid grid-cols-3 gap-2 mb-7">
+          ${d.gallery.map(g=>`<img src="${g}" class="dt-thumb w-full h-24 sm:h-28 object-cover rounded-xl" loading="lazy" alt="">`).join('')}
+        </div>
+        <h4 class="font-thai font-bold text-deep mb-3">${L==='en'?'Highlights':'จุดเด่น'}</h4>
+        <ul class="space-y-2 mb-7">
+          ${t.features.map(f=>`<li class="flex items-start gap-2.5 text-deep/70 text-sm"><span class="text-amber font-bold mt-0.5">✓</span><span>${f}</span></li>`).join('')}
+        </ul>
+        <div class="grid grid-cols-3 gap-3 mb-7">
+          ${t.info.map(i=>`<div class="bg-cream-dk rounded-xl p-4 text-center"><p class="text-deep/40 text-xs mb-1">${i.k}</p><p class="text-deep font-bold text-sm">${i.v}</p></div>`).join('')}
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="tel:+66xxxxxxxx" class="flex-1 bg-amber text-deep text-center font-bold py-3.5 rounded-xl hover:bg-amber-lt transition-colors">${L==='en'?'Call to book':'โทรจอง'}</a>
+          <a href="#contact" onclick="closeDetail()" class="flex-1 border border-deep/15 text-deep text-center font-bold py-3.5 rounded-xl hover:bg-deep hover:text-cream transition-colors">${L==='en'?'Directions':'ดูเส้นทาง'}</a>
+        </div>
+      </div>`;
+    openModal('detailModal');
+  }
+
+  /* ══════════════ E-BOOK — two-page book ══════════════ */
+  let curLeaf = 0, bookBusy = false;
+  const bookEl = document.getElementById('book');
+  const bookLeaves = () => Array.from(bookEl.querySelectorAll('.leaf'));
+
+  /* Real menu pages from images/menu/ — order = reading order (1 = cover).
+     Savoury food first, then desserts & drinks at the back. */
+  const MENU_ORDER = [
+    1,        // ปก Cover
+    15, 4,    // แนะนำ Recommended (กุ้ง / ปูดองเกาหลี)
+    6, 10,    // อาหารทะเล / ทอด-ย่าง-นึ่ง
+    3, 9,     // ผัด / ต้ม
+    14, 5,    // ยำ-ส้มตำ / ทานเล่น-จานเดียว
+    8, 13,    // ── เครื่องดื่ม: Non-coffee / Beverage
+    2, 7,     // ── ของหวาน: Cakes-Desserts / Sweets
+    11, 12    // ── ของหวาน: Sweets (Honey toast) / Bingsu
+  ];
+  const MENU_PAGES = MENU_ORDER.map(n => 'images/menu/' + n + '.jpg');
+
+  let bookBuilt = false;
+  function makeFace(side, src){
+    const f = document.createElement('div');
+    f.className = 'face ' + side;
+    if (src){
+      const img = document.createElement('img');
+      img.src = src; img.alt = 'เมนูเรือนชายน้ำ'; img.loading = 'lazy';
+      img.onerror = () => {
+        f.innerHTML = '<div class="face-inner flex items-center justify-center text-center px-4" ' +
+          'style="background:#FBF5ED;color:rgba(42,31,14,.45);font-size:12px;">วางไฟล์รูปเมนูที่<br><b>' + src + '</b></div>';
+      };
+      f.appendChild(img);
+    } else {
+      f.innerHTML = '<div class="face-inner flex flex-col items-center justify-center text-center px-6" ' +
+        'style="background:linear-gradient(160deg,#1c1407,#120C05);">' +
+        '<img src="images/logo-r.png" class="w-16 h-16 object-contain mb-3" alt="">' +
+        '<p class="font-thai font-bold text-cream text-lg">ขอบคุณที่มาเยือน</p>' +
+        '<p class="font-display italic text-amber/80 text-sm mt-1">Thank you</p></div>';
+    }
+    return f;
+  }
+  function buildBook(){
+    if (bookBuilt) return;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < MENU_PAGES.length; i += 2){
+      const leaf = document.createElement('div');
+      leaf.className = 'leaf';
+      leaf.appendChild(makeFace('front', MENU_PAGES[i]));
+      leaf.appendChild(makeFace('back', MENU_PAGES[i + 1]));   // last back may be the thank-you cover
+      frag.appendChild(leaf);
+    }
+    bookEl.appendChild(frag);
+    bookBuilt = true;
+  }
+  function bookLabel(){
+    const N = bookLeaves().length;
+    const el = document.getElementById('ebookPage');
+    if (curLeaf <= 0) el.textContent = (curLang === 'en' ? 'Cover' : 'ปก');
+    else if (curLeaf >= N) el.textContent = (curLang === 'en' ? 'Back' : 'ปกหลัง');
+    else el.textContent = (2*curLeaf) + '–' + (2*curLeaf+1);
+  }
+  function bookOffset(){
+    const N = bookLeaves().length;
+    bookEl.classList.toggle('at-start', curLeaf <= 0);          // cover only → centered
+    bookEl.classList.toggle('at-end',   curLeaf >= N);          // back cover only → centered
+    bookEl.classList.toggle('single',   curLeaf <= 0 || curLeaf >= N);
+  }
+  function bookRest(){
+    const ls = bookLeaves(), N = ls.length;
+    ls.forEach((lf,i)=>{ lf.style.zIndex = (i < curLeaf) ? i : (N - i); });
+    bookLabel();
+  }
+  function bookGo(dir){
+    const ls = bookLeaves(), N = ls.length;
+    if (bookBusy) return;
+    if (dir > 0 && curLeaf >= N) return;
+    if (dir < 0 && curLeaf <= 0) return;
+    const lf = ls[dir > 0 ? curLeaf : curLeaf-1];   // the leaf that turns
+    bookBusy = true;
+    lf.style.zIndex = 999;                           // stay on top through the turn
+    lf.classList.add('turning');
+    if (dir > 0) lf.classList.add('flipped'); else lf.classList.remove('flipped');
+    curLeaf += dir;
+    bookLabel();
+    bookOffset();                                    // slide book to keep page(s) centered
+    const settle = e => {
+      if (e.propertyName !== 'transform') return;
+      lf.removeEventListener('transitionend', settle);
+      lf.classList.remove('turning');
+      bookBusy = false;
+      bookRest();
+    };
+    lf.addEventListener('transitionend', settle);
+  }
+  function ebookNext(){ bookGo(1); }
+  function ebookPrev(){ bookGo(-1); }
+  function openEbook(){
+    buildBook();                                     // build pages from images/menu/ on first open
+    curLeaf = 0; bookBusy = false;
+    bookLeaves().forEach(l => l.classList.remove('flipped','turning'));
+    bookEl.style.transition = 'none';                // set centered cover instantly on open
+    bookRest();
+    bookOffset();
+    void bookEl.offsetWidth;                          // force reflow
+    bookEl.style.transition = '';
+    openModal('ebookModal');
+  }
+  function closeEbook(){ closeModal('ebookModal'); }
+  // tap a menu page → open zoom (flip with the ← → buttons)
+  bookEl.addEventListener('click', e => {
+    const img = e.target.closest('img');
+    if (img && img.getAttribute('src')) openZoom(img.getAttribute('src'));
+  });
+
+  /* ══════════════ ZOOM LIGHTBOX ══════════════ */
+  const zoomImg = document.getElementById('zoomImg');
+  function openZoom(src){
+    zoomImg.classList.remove('zoomed');
+    zoomImg.src = src;
+    openModal('zoomModal');
+    const zw = document.getElementById('zoomWrap');
+    zw.scrollTop = 0; zw.scrollLeft = 0;
+  }
+  function closeZoom(){
+    document.getElementById('zoomModal').classList.remove('open');
+    document.body.style.overflow = 'hidden';   // keep e-book modal scroll-locked underneath
+  }
+  zoomImg.addEventListener('click', () => zoomImg.classList.toggle('zoomed'));
+
+  /* ══════════════ INSTAGRAM AUDIENCE FILTER ══════════════ */
+  document.querySelectorAll('.aud-pill').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.aud-pill').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    const aud = b.dataset.aud;
+    document.querySelectorAll('#igGrid .ig-cell').forEach(c => {
+      c.style.display = (aud === 'all' || c.dataset.aud === aud) ? '' : 'none';
+    });
+  }));
+
+  /* ══════════════ TH / EN LANGUAGE ══════════════ */
+  const I18N = {
+    // Navbar
+    "ประสบการณ์":"Experience","เมนู":"Menu","รีวิว":"Reviews","ติดต่อ":"Contact",
+    "เมนูแนะนำ":"Recommended Menu","โทร":"Call",
+    // Hero
+    "ริมคลองสุนัขหอน · บ้านบ่อ · สมุทรสาคร · เปิดมากกว่า 20 ปี":"Khlong Sunak Hon · Ban Bo · Samut Sakhon · Over 20 Years",
+    "ครบจบในที่เดียว":"All in One Place",
+    "อาหารทะเลสด · คาเฟ่ Rustic Loft · ที่พักริมน้ำ · ดนตรีสด":"Fresh Seafood · Rustic Loft Cafe · Riverside Stay · Live Music",
+    "บรรยากาศโครงสร้างไม้ไผ่ศิลปะริมคลองสุนัขหอน":"Artistic bamboo architecture by the Khlong Sunak Hon",
+    "ดูแผนที่":"View Map","ปีแห่งความไว้วางใจ":"Years of Trust","คะแนน Wongnai":"Wongnai Rating",
+    "ร้านอาหาร · คาเฟ่ · รีสอร์ท":"Restaurant · Cafe · Resort",
+    // Experience
+    "ประสบการณ์สุดพิเศษ":"Special Experience","ครบในที่เดียว กับ":"All in one place with",
+    "ไม่ว่าจะมาทานอาหาร นั่งชิลล์คาเฟ่ หรือพักผ่อนค้างคืน":"Whether you dine, relax at the cafe, or stay the night",
+    "เรือนชายน้ำพร้อมต้อนรับคุณเสมอ":"Ruean Chainam always welcomes you",
+    "ร้านอาหาร":"Restaurant","คาเฟ่":"Cafe","รีสอร์ท":"Resort","ยอดนิยม":"Popular",
+    "นั่งทานอาหารทะเลสดใต้โครงสร้างไม้ไผ่ศิลปะ ริมคลองสุนัขหอน บรรยากาศอันเป็นเอกลักษณ์ไม่เหมือนใคร":"Enjoy fresh seafood under artistic bamboo architecture by the Khlong Sunak Hon — a truly unique atmosphere.",
+    "RUEAN CHAINAM Cafe บิงซู ครัวซอง วาฟเฟิล เครื่องดื่มคราฟต์ สไตล์ Rustic Loft ถ่ายรูปสวยทุกมุม":"RUEAN CHAINAM Cafe — bingsu, croissants, waffles & craft drinks in Rustic Loft style. Every corner is photo-worthy.",
+    "ห้องพัก Loft ผนังคอนกรีตดิบ ระเบียงอ่างจาคุซซีส่วนตัว ชมวิวแม่น้ำ 20+ ปีแห่งความไว้วางใจ":"Loft rooms with raw concrete walls, private jacuzzi balconies and river views. 20+ years of trust.",
+    "อาหารทะเลสด":"Fresh Seafood","ไม้ไผ่ศิลปะ":"Bamboo Art","ริมน้ำ":"Riverside",
+    "Jacuzzi ส่วนตัว":"Private Jacuzzi","วิวแม่น้ำ":"River View","ดูรายละเอียด":"View details",
+    "โครงสร้างไม้ไผ่ศิลปะ":"Artistic Bamboo Structure","เอกลักษณ์ที่ไม่เหมือนใคร":"A One-of-a-Kind Icon",
+    "สถาปัตยกรรมโค้งไม้ไผ่ขนาดใหญ่ เปรียบเสมือนมหาวิหารธรรมชาติ":"A grand curved bamboo architecture — like a natural cathedral",
+    "พร้อมแสงไฟหวายอบอุ่น สุดอลังการในแบบที่หาไม่ได้ที่ไหน":"With warm rattan lighting — a splendor found nowhere else",
+    // Menu
+    "เมนูซิกเนเจอร์":"Signature Menu","ที่คุณต้องลอง":"You Must Try",
+    "เปิดเมนูเล่มเต็ม (E-book)":"Open Full Menu (E-book)",
+    "ราคา NET":"NET Price","ไม่มีบวกเพิ่มจุกจิก":"No extra charges",
+    "ราคาที่เห็นคือราคาที่จ่าย ไม่มีค่าบริการ ไม่มี VAT ซ่อน":"What you see is what you pay — no service charge, no hidden VAT",
+    "จัดเต็ม":"Full Set","อาหารทะเลครบชุด ริมคลองสุนัขหอน":"Complete Seafood Set by the Khlong Sunak Hon",
+    "กุ้งแม่น้ำ ปูม้า หอยแมลงภู่ ปลาหมึก สดจากท้องถิ่น":"River prawns, blue crab, mussels & squid — fresh from local sources",
+    "กุ้งแม่น้ำเผาเกลือ":"Salt-Grilled River Prawn","สดจากคลองสุนัขหอน เเผาใหม่ หอม หวาน ตัวใหญ่":"Fresh from the Khlong Sunak Hon — grilled to order, fragrant & sweet",
+    "ซิกเนเจอร์":"Signature","ยำชะครามกุ้งสด":"Spicy Chacram & Prawn Salad",
+    "วัตถุดิบท้องถิ่น รสเปรี้ยวอมหวาน กลิ่นหอมชะคราม":"Local ingredients, sweet-and-sour, fragrant chacram","ชะคราม":"Chacram",
+    "กุ้งแม่น้ำซอสเด็ด":"River Prawn in Special Sauce","ซอสสูตรพิเศษ หอมหวาน ราดบนกุ้งแม่น้ำตัวใหญ่":"Special sweet sauce over large river prawns","เชฟแนะนำ":"Chef's Pick",
+    "ปลาหมึกทอดกระเทียม":"Fried Calamari with Garlic","ทอดกรอบ หอมกระเทียม รสชาติเข้มข้น":"Crispy fried, fragrant garlic, rich flavor","เมนูฮิต":"Hit Menu",
+    "กระเช้าเรือนชายน้ำ":"Ruean Chainam Basket","เสิร์ฟในมะพร้าวสด สุดพิเศษ เอกลักษณ์เฉพาะร้าน":"Served in fresh coconut — our special signature",
+    "ดูเมนูทั้งหมด":"View Full Menu","อาหารทะเล · คาเฟ่ · ของหวาน":"Seafood · Cafe · Dessert","ดูเมนู →":"Open Menu →",
+    // Reviews
+    "รีวิวจากลูกค้า":"Customer Reviews","ลูกค้าพูดถึงเรา":"What Our Guests","อย่างไรบ้าง?":"Say About Us",
+    "คะแนนเฉลี่ย":"Average","จากรีวิวหลายร้อยรีวิว":"From hundreds of reviews","อาหาร":"Food","บรรยากาศ":"Ambiance","บริการ":"Service",
+    "Wongnai · ลูกค้าประจำ":"Wongnai · Regular guest","Wongnai · เพิ่งมา":"Wongnai · First visit","Wongnai · พักรีสอร์ท":"Wongnai · Resort guest",
+    "\"มาครั้งแรกแล้วติดใจเลย! กุ้งแม่น้ำสดมาก บรรยากาศไม้ไผ่ริมน้ำสุดสวย ราคาไม่แพง ไม่มีค่าบริการ จะพาครอบครัวมาอีกแน่นอน\"":"\"Loved it on my first visit! The river prawns are so fresh, the riverside bamboo setting is gorgeous, fair prices with no service charge. Definitely bringing my family back.\"",
+    "\"บิงซูคาเฟ่อร่อยมาก บรรยากาศน่ารักสุดๆ เครื่องดื่มหลากหลาย ถ่ายรูปได้ทุกมุม แนะนำ RUEAN CHAINAM\"":"\"The bingsu and cafe are delicious, the vibe is super cute, lots of drink choices and photo spots everywhere. Highly recommend RUEAN CHAINAM!\"",
+    "\"พักรีสอร์ทมา 2 คืน อ่างจาคุซซีส่วนตัว วิวแม่น้ำสวยมาก เงียบสงบ ห้องสไตล์ลอฟต์ดูแพง คุ้มค่ามากๆ\"":"\"Stayed 2 nights at the resort — private jacuzzi, beautiful river view, peaceful and quiet, loft rooms that look luxurious. Great value!\"",
+    "เครื่องดื่ม Specialty Coffee คราฟต์":"Craft Specialty Coffee","บิงซู เบเกอรี่สด ในบรรยากาศริมน้ำ":"Bingsu & fresh bakery by the river",
+    "ดนตรีสดทุกคืน":"Live Music Every Night","อะคูสติกริมน้ำ บรรยากาศอบอุ่น":"Riverside acoustic, warm vibes",
+    "บรรยากาศ Check-in":"Check-in Spots","ดูรูปเพิ่มเติมที่ Facebook":"More photos on Facebook",
+    // Instagram
+    "ตามเราบน":"Follow us on","ไม่ว่าคุณจะเป็นกลุ่มไหน เรามีมุมที่ใช่สำหรับคุณ — เลือกดูตามไลฟ์สไตล์ของคุณ":"Whoever you are, we have the perfect spot for you — browse by your lifestyle",
+    "ทั้งหมด":"All","ครอบครัว":"Family","คู่รัก":"Couples","สายคาเฟ่":"Cafe Lovers","สายดนตรี/ปาร์ตี้":"Music / Party",
+    "อาหารทะเลครบโต๊ะ":"Full seafood table","#มากันทั้งครอบครัว":"#FamilyTime","จาคุซซีส่วนตัว":"Private jacuzzi","#ทริปคู่รัก":"#CoupleTrip",
+    "บิงซู & เครื่องดื่มคราฟต์":"Bingsu & craft drinks","#สายคาเฟ่":"#CafeLife","#สังสรรค์ริมน้ำ":"#RiversideNights",
+    "มุมชิล นั่งทำงานได้":"Chill work-friendly corner","ห้องพักสไตล์ลอฟต์":"Loft-style rooms","#พักผ่อนริมน้ำ":"#RiversideStay",
+    "เบเกอรี่สดใหม่":"Fresh bakery","#คาเฟ่ฮอปปิ้ง":"#CafeHopping","โต๊ะริมคลองสุนัขหอน":"Tables by the river","#วิวหลักล้าน":"#MillionDollarView",
+    "ติดตาม @rueanchainam":"Follow @rueanchainam",
+    // Contact
+    "ตำแหน่งร้าน":"Location","เรือนชายน้ำ คาเฟ่ & ร้านอาหาร":"Ruean Chainam Cafe & Restaurant",
+    "ริมคลองสุนัขหอน ตำบลบ้านบ่อ อำเภอเมือง จังหวัดสมุทรสาคร":"Khlong Sunak Hon, Ban Bo, Mueang District, Samut Sakhon",
+    "นำทาง Google Maps":"Navigate with Google Maps","ที่จอดรถ: สะดวก & กว้างขวาง":"Parking: Easy & Spacious",
+    "มีที่จอดรถเพียงพอสำหรับทุกคัน ไม่ต้องกังวล":"Plenty of parking for everyone — no worries",
+    "เวลาเปิด-ปิด":"Opening Hours","โซนคาเฟ่ RUEAN CHAINAM":"RUEAN CHAINAM Cafe Zone",
+    "วันธรรมดา (จ–ศ)":"Weekdays (Mon–Fri)","วันหยุด (ส–อา)":"Weekend (Sat–Sun)","แนะนำ":"Recommended",
+    "โซนร้านอาหาร & ดนตรีสด":"Restaurant & Live Music Zone","มื้อเย็น + ดนตรีสด":"Dinner + Live Music","เสาร์–อาทิตย์":"Sat–Sun","ขยายเวลา":"Extended",
+    "ช่องทางติดต่อ":"Contact Channels","โทรศัพท์":"Phone","กดโทรเลย":"Tap to call","แชทได้เลย":"Chat now","ไลก์เพจ":"Like page","ตามเราที่นี่":"Follow us here",
+    "© 2024 เรือนชายน้ำ คาเฟ่ & ร้านอาหาร · All Rights Reserved":"© 2024 Ruean Chainam Cafe & Restaurant · All Rights Reserved",
+    "กลับด้านบน ↑":"Back to top ↑","โทรเลย":"Call Now"
+  };
+  let curLang = localStorage.getItem('lang') || 'th';
+  const origCache = new Map();
+  function applyLang(lang){
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(n){
+        const tag = n.parentNode && n.parentNode.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    let n;
+    while (n = w.nextNode()){
+      const key = n.nodeValue.trim();
+      if (lang === 'en'){
+        if (I18N[key] !== undefined){
+          if (!origCache.has(n)) origCache.set(n, n.nodeValue);
+          n.nodeValue = n.nodeValue.replace(key, I18N[key]);
+        }
+      } else if (origCache.has(n)){
+        n.nodeValue = origCache.get(n);
+      }
+    }
+    document.documentElement.lang = lang;
+    const l1 = document.getElementById('langLabel'); if (l1) l1.textContent = lang === 'en' ? 'TH' : 'EN';
+    const l2 = document.getElementById('langLabelMobile'); if (l2) l2.textContent = lang === 'en' ? 'ไทย' : 'English';
+  }
+  function toggleLang(){
+    curLang = curLang === 'en' ? 'th' : 'en';
+    localStorage.setItem('lang', curLang);
+    applyLang(curLang);
+  }
+  if (curLang === 'en') applyLang('en'); else applyLang('th');
+</script>
+
+</body>
+</html>
